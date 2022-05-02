@@ -2,6 +2,7 @@ let displayArray = [];
 let displayResult;
 let x;
 let y;
+let operator;
 
 let display = function () {
   displayResult = displayArray.join("");
@@ -107,6 +108,6 @@ eight.addEventListener("click", () => {
 });
 
 nine.addEventListener("click", () => {
-  resultDisplay.push(9);
+  displayArray.push(9);
   display();
 });
