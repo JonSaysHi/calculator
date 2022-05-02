@@ -6,6 +6,7 @@ let y;
 let display = function () {
   displayResult = displayArray.join("");
   displayResult = Number(displayResult);
+  document.querySelector(".result").textContent = displayResult;
 };
 
 const clearButton = document.querySelector("#clear");
