@@ -1,8 +1,10 @@
 let displayArray = [];
 let displayResult;
+let displayLength;
 let x;
 let y;
 let operator;
+let number;
 
 let display = function () {
   commas();
@@ -66,57 +68,47 @@ const operate = function (operator, x, y) {
 let displayValue = function () {};
 
 zero.addEventListener("click", () => {
-  displayArray.push(0);
-  display();
+  createDisplay(0);
 });
 
 one.addEventListener("click", () => {
-  displayArray.push(1);
-  display();
+  createDisplay(1);
 });
 
 two.addEventListener("click", () => {
-  displayArray.push(2);
-  display();
+  createDisplay(2);
 });
 
 three.addEventListener("click", () => {
-  displayArray.push(3);
-  display();
+  createDisplay(3);
 });
 
 four.addEventListener("click", () => {
-  displayArray.push(4);
-  display();
+  createDisplay(4);
 });
 
 five.addEventListener("click", () => {
-  displayArray.push(5);
-  display();
+  createDisplay(5);
 });
 
 six.addEventListener("click", () => {
-  displayArray.push(6);
-  display();
+  createDisplay(6);
 });
 
 seven.addEventListener("click", () => {
-  displayArray.push(7);
-  display();
+  createDisplay(7);
 });
 
 eight.addEventListener("click", () => {
-  displayArray.push(8);
-  display();
+  createDisplay(8);
 });
 
 nine.addEventListener("click", () => {
-  displayArray.push(9);
-  display();
+  createDisplay(9);
 });
 
 let commas = function () {
-  let displayLength = displayArray.length;
+  displayLength = displayArray.length;
   if (displayLength === 4) {
     displayArray.splice(1, 0, ",");
   } else if (displayLength === 6) {
@@ -141,3 +133,8 @@ let commas = function () {
     displayArray.splice(7, 0, ",");
   }
 };
+
+function createDisplay(number) {
+  displayArray.push(number);
+  display();
+}
