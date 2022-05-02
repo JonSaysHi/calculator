@@ -1,4 +1,5 @@
 let displayArray = [];
+let displayResult = displayArray.join();
 let x;
 let y;
 const clearButton = document.querySelector("#clear");
@@ -76,14 +77,14 @@ six.addEventListener("click", () => {
   displayArray.push(6);
 });
 
-six.addEventListener("click", () => {
+seven.addEventListener("click", () => {
   displayArray.push(7);
 });
 
-six.addEventListener("click", () => {
+eight.addEventListener("click", () => {
   displayArray.push(8);
 });
 
-six.addEventListener("click", () => {
-  displayArray.push(9);
+nine.addEventListener("click", () => {
+  resultDisplay.push(9);
 });
