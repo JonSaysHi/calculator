@@ -6,7 +6,8 @@ let operator;
 
 let display = function () {
   displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  displayArray = displayArray.slice(0, 9);
+  displayResult = displayResult;
   document.querySelector(".result").textContent = displayResult;
 };
 
