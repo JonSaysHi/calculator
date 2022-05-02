@@ -4,16 +4,8 @@ let displayLength;
 let x;
 let y;
 let operator;
-let number;
 
-let display = function () {
-  commas();
-
-  displayResult = displayArray.join("");
-  displayArray = displayArray.slice(0, 10);
-  displayResult = displayResult;
-  document.querySelector(".result").textContent = displayResult;
-};
+// All querySelectors for the buttons of the calculator
 
 const clearButton = document.querySelector("#clear");
 const plusOrMinusButton = document.querySelector("#plusminus");
@@ -34,6 +26,8 @@ const six = document.querySelector("#six");
 const seven = document.querySelector("#seven");
 const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
+
+// All perator functions
 
 const add = function (x, y) {
   return x + y;
@@ -65,7 +59,23 @@ const operate = function (operator, x, y) {
   }
 };
 
-let displayValue = function () {};
+// Functions for creating the visual display of numbers
+
+let display = function () {
+  commas();
+
+  displayResult = displayArray.join("");
+  displayArray = displayArray.slice(0, 10);
+  displayResult = displayResult;
+  document.querySelector(".result").textContent = displayResult;
+};
+
+function createDisplay(number) {
+  displayArray.push(number);
+  display();
+}
+
+// Event listeners for buttons
 
 zero.addEventListener("click", () => {
   createDisplay(0);
@@ -107,6 +117,8 @@ nine.addEventListener("click", () => {
   createDisplay(9);
 });
 
+// This function adds and removes commas for the corresponding length
+
 let commas = function () {
   displayLength = displayArray.length;
   if (displayLength === 4) {
@@ -133,8 +145,3 @@ let commas = function () {
     displayArray.splice(7, 0, ",");
   }
 };
-
-function createDisplay(number) {
-  displayArray.push(number);
-  display();
-}
