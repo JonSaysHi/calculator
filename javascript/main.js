@@ -29,31 +29,33 @@ const nine = document.querySelector("#nine");
 
 // All perator functions
 
-const add = function (x, y) {
+const addition = function (x, y) {
   return x + y;
 };
 
-const subtract = function (x, y) {
+const subtraction = function (x, y) {
   return x - y;
 };
 
-const multiply = function (x, y) {
-  return x * y;
+const multiplication = function (x, y) {
+  displayResult = x * y;
+  document.querySelector(".result").textContent = displayResult;
 };
 
-const divide = function (x, y) {
-  return x / y;
+const division = function (x, y) {
+  displayResult = x / y;
+  document.querySelector(".result").textContent = displayResult;
 };
 
 const operate = function (operator, x, y) {
   if (operator === "add") {
-    add(x, y);
+    additon(x, y);
   } else if (operator === "subtract") {
-    subtract(x, y);
+    subtraction(x, y);
   } else if (operator === "multiply") {
-    multiply(x, y);
+    multiplication(x, y);
   } else if (operator === "divide") {
-    divide(x, y);
+    division(x, y);
   } else {
     return "ERROR";
   }
@@ -121,7 +123,15 @@ nine.addEventListener("click", () => {
 // Event listeners for operators
 
 divide.addEventListener("click", () => {
-  createDisplay(9);
+  x = Number(displayResult);
+  operator = "divide";
+  displayArray.splice(0, displayArray.length);
+});
+
+equals.addEventListener("click", () => {
+  y = Number(displayResult);
+  displayArray.splice(0, displayArray.length);
+  operate(operator, x, y);
 });
 
 // This function adds and removes commas for the corresponding length
