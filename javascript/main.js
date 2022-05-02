@@ -56,42 +56,60 @@ let displayValue = function () {};
 
 zero.addEventListener("click", () => {
   displayArray.push(0);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 one.addEventListener("click", () => {
   displayArray.push(1);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 two.addEventListener("click", () => {
   displayArray.push(2);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 three.addEventListener("click", () => {
   displayArray.push(3);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 four.addEventListener("click", () => {
   displayArray.push(4);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 five.addEventListener("click", () => {
   displayArray.push(5);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 six.addEventListener("click", () => {
   displayArray.push(6);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 seven.addEventListener("click", () => {
   displayArray.push(7);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 eight.addEventListener("click", () => {
   displayArray.push(8);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
 
 nine.addEventListener("click", () => {
   resultDisplay.push(9);
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
 });
-
-displayResult = displayArray.join();
