@@ -5,30 +5,7 @@ let y;
 let operator;
 
 let display = function () {
-  let displayLength = displayArray.length;
-  if (displayLength === 4) {
-    displayArray.splice(1, 0, ",");
-  } else if (displayLength === 6) {
-    displayArray.splice(1, 1);
-    displayArray.splice(2, 0, ",");
-  } else if (displayLength === 7) {
-    displayArray.splice(2, 1);
-    displayArray.splice(3, 0, ",");
-  } else if (displayLength === 8) {
-    displayArray.splice(3, 1);
-    displayArray.splice(1, 0, ",");
-    displayArray.splice(5, 0, ",");
-  } else if (displayLength === 10) {
-    displayArray.splice(1, 1);
-    displayArray.splice(4, 1);
-    displayArray.splice(2, 0, ",");
-    displayArray.splice(6, 0, ",");
-  } else if (displayLength === 11) {
-    displayArray.splice(2, 1);
-    displayArray.splice(5, 1);
-    displayArray.splice(3, 0, ",");
-    displayArray.splice(7, 0, ",");
-  }
+  commas();
 
   displayResult = displayArray.join("");
   displayArray = displayArray.slice(0, 10);
@@ -137,3 +114,30 @@ nine.addEventListener("click", () => {
   displayArray.push(9);
   display();
 });
+
+let commas = function () {
+  let displayLength = displayArray.length;
+  if (displayLength === 4) {
+    displayArray.splice(1, 0, ",");
+  } else if (displayLength === 6) {
+    displayArray.splice(1, 1);
+    displayArray.splice(2, 0, ",");
+  } else if (displayLength === 7) {
+    displayArray.splice(2, 1);
+    displayArray.splice(3, 0, ",");
+  } else if (displayLength === 8) {
+    displayArray.splice(3, 1);
+    displayArray.splice(1, 0, ",");
+    displayArray.splice(5, 0, ",");
+  } else if (displayLength === 10) {
+    displayArray.splice(1, 1);
+    displayArray.splice(4, 1);
+    displayArray.splice(2, 0, ",");
+    displayArray.splice(6, 0, ",");
+  } else if (displayLength === 11) {
+    displayArray.splice(2, 1);
+    displayArray.splice(5, 1);
+    displayArray.splice(3, 0, ",");
+    displayArray.splice(7, 0, ",");
+  }
+};
