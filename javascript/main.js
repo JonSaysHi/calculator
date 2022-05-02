@@ -124,16 +124,21 @@ nine.addEventListener("click", () => {
 
 divide.addEventListener("click", () => {
   let typeX = typeof x;
+  let typeY = typeof y;
   if (typeX == "undefined") {
     x = Number(displayResult);
     operator = "divide";
     displayArray.splice(0, displayArray.length);
-    console.log(typeX);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
   } else if (typeX == "number") {
     y = Number(displayResult);
     displayArray.splice(0, displayArray.length);
     division(x, y);
-    console.log(typeX);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
+
+    x = displayResult;
   }
 });
 
