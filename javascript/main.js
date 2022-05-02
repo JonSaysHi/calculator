@@ -1,5 +1,5 @@
 let displayArray = [];
-let displayResult = displayArray.join();
+let displayResult;
 let x;
 let y;
 const clearButton = document.querySelector("#clear");
@@ -11,6 +11,7 @@ const subtractButton = document.querySelector("#subtract");
 const addButton = document.querySelector("#add");
 const equalsButton = document.querySelector("#equals");
 const periodButton = document.querySelector("#period");
+const zero = document.querySelector("#zero");
 const one = document.querySelector("#one");
 const two = document.querySelector("#two");
 const three = document.querySelector("#three");
@@ -53,6 +54,10 @@ const operate = function (operator, x, y) {
 
 let displayValue = function () {};
 
+zero.addEventListener("click", () => {
+  displayArray.push(0);
+});
+
 one.addEventListener("click", () => {
   displayArray.push(1);
 });
@@ -88,3 +93,5 @@ eight.addEventListener("click", () => {
 nine.addEventListener("click", () => {
   resultDisplay.push(9);
 });
+
+displayResult = displayArray.join();
