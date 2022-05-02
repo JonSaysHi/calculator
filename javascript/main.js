@@ -2,6 +2,12 @@ let displayArray = [];
 let displayResult;
 let x;
 let y;
+
+let display = function () {
+  displayResult = displayArray.join("");
+  displayResult = Number(displayResult);
+};
+
 const clearButton = document.querySelector("#clear");
 const plusOrMinusButton = document.querySelector("#plusminus");
 const percentButton = document.querySelector("#percent");
@@ -56,60 +62,50 @@ let displayValue = function () {};
 
 zero.addEventListener("click", () => {
   displayArray.push(0);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 one.addEventListener("click", () => {
   displayArray.push(1);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 two.addEventListener("click", () => {
   displayArray.push(2);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 three.addEventListener("click", () => {
   displayArray.push(3);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 four.addEventListener("click", () => {
   displayArray.push(4);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 five.addEventListener("click", () => {
   displayArray.push(5);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 six.addEventListener("click", () => {
   displayArray.push(6);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 seven.addEventListener("click", () => {
   displayArray.push(7);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 eight.addEventListener("click", () => {
   displayArray.push(8);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
 
 nine.addEventListener("click", () => {
   resultDisplay.push(9);
-  displayResult = displayArray.join("");
-  displayResult = Number(displayResult);
+  display();
 });
