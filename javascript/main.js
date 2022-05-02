@@ -123,9 +123,16 @@ nine.addEventListener("click", () => {
 // Event listeners for operators
 
 divide.addEventListener("click", () => {
-  x = Number(displayResult);
-  operator = "divide";
-  displayArray.splice(0, displayArray.length);
+  let typeY = typeof y;
+  if (typeY == "undefined") {
+    x = Number(displayResult);
+    operator = "divide";
+    displayArray.splice(0, displayArray.length);
+  } else if (typeY == "number") {
+    y = Number(displayResult);
+    displayArray.splice(0, displayArray.length);
+    division(x, y);
+  }
 });
 
 equals.addEventListener("click", () => {
