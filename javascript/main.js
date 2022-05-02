@@ -7,15 +7,15 @@ let operator;
 
 // All querySelectors for the buttons of the calculator
 
-const clearButton = document.querySelector("#clear");
-const plusOrMinusButton = document.querySelector("#plusminus");
-const percentButton = document.querySelector("#percent");
-const divideButton = document.querySelector("#divide");
-const multiplyButton = document.querySelector("#multiply");
-const subtractButton = document.querySelector("#subtract");
-const addButton = document.querySelector("#add");
-const equalsButton = document.querySelector("#equals");
-const periodButton = document.querySelector("#period");
+const clear = document.querySelector("#clear");
+const plusOrMinus = document.querySelector("#plusminus");
+const percent = document.querySelector("#percent");
+const divide = document.querySelector("#divide");
+const multiply = document.querySelector("#multiply");
+const subtract = document.querySelector("#subtract");
+const add = document.querySelector("#add");
+const equals = document.querySelector("#equals");
+const period = document.querySelector("#period");
 const zero = document.querySelector("#zero");
 const one = document.querySelector("#one");
 const two = document.querySelector("#two");
@@ -115,6 +115,12 @@ eight.addEventListener("click", () => {
 });
 
 nine.addEventListener("click", () => {
+  createDisplay(9);
+});
+
+// Event listeners for operators
+
+divide.addEventListener("click", () => {
   createDisplay(9);
 });
 
