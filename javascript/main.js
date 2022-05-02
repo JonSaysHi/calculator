@@ -1,4 +1,4 @@
-let resultDisplay = [];
+let displayArray = [];
 let x;
 let y;
 const clearButton = document.querySelector("#clear");
@@ -53,37 +53,37 @@ const operate = function (operator, x, y) {
 let displayValue = function () {};
 
 one.addEventListener("click", () => {
-  resultDisplay.push(1);
+  displayArray.push(1);
 });
 
 two.addEventListener("click", () => {
-  resultDisplay.push(2);
+  displayArray.push(2);
 });
 
 three.addEventListener("click", () => {
-  resultDisplay.push(3);
+  displayArray.push(3);
 });
 
 four.addEventListener("click", () => {
-  resultDisplay.push(4);
+  displayArray.push(4);
 });
 
 five.addEventListener("click", () => {
-  resultDisplay.push(5);
+  displayArray.push(5);
 });
 
 six.addEventListener("click", () => {
-  resultDisplay.push(6);
+  displayArray.push(6);
 });
 
 six.addEventListener("click", () => {
-  resultDisplay.push(7);
+  displayArray.push(7);
 });
 
 six.addEventListener("click", () => {
-  resultDisplay.push(8);
+  displayArray.push(8);
 });
 
 six.addEventListener("click", () => {
-  resultDisplay.push(9);
+  displayArray.push(9);
 });
