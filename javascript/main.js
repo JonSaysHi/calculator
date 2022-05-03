@@ -65,14 +65,15 @@ const division = function (x, y) {
 
 let commasForResult = function () {
   displayResultArray = Array.from(String(displayResult), myFunc);
+  console.log(displayResultArray);
   if (displayResultArray.length >= 10) {
     displayResult = Number(displayResultArray.join(""));
     displayResult = Number.parseFloat(displayResult).toExponential(0);
     return displayResult;
   } else {
-    commasResult();
-    displayArray = displayArray.slice(0, 10);
-    displayResult = displayResultArray.join("");
+    // commasResult();
+    // displayArray = displayArray.slice(0, 10);
+    displayResult = displayResult.toLocaleString();
     return displayResult;
   }
 };
@@ -95,10 +96,8 @@ const operate = function (operator, x, y) {
 
 let display = function () {
   displayResult = displayArray.join("");
-  // console.log(actualResult);
   commas();
   displayArray = displayArray.slice(0, 10);
-  // displayArray = displayArray.slice(0, 8);
   document.querySelector(".result").textContent = displayResult;
 };
 
@@ -286,29 +285,29 @@ let commas = function () {
   }
 };
 
-let commasResult = function () {
-  displayLength = displayResultArray.length;
-  if (displayLength === 4) {
-    displayResultArray.splice(1, 0, ",");
-  } else if (displayLength === 5) {
-    displayResultArray.splice(1, 0);
-    displayResultArray.splice(2, 0, ",");
-  } else if (displayLength === 6) {
-    displayResultArray.splice(2, 0);
-    displayResultArray.splice(3, 0, ",");
-  } else if (displayLength === 7) {
-    displayResultArray.splice(3, 0);
-    displayResultArray.splice(1, 0, ",");
-    displayResultArray.splice(5, 0, ",");
-  } else if (displayLength === 8) {
-    displayResultArray.splice(1, 0);
-    displayResultArray.splice(4, 0);
-    displayResultArray.splice(2, 0, ",");
-    displayResultArray.splice(6, 0, ",");
-  } else if (displayLength === 9) {
-    displayResultArray.splice(2, 0);
-    displayResultArray.splice(5, 0);
-    displayResultArray.splice(3, 0, ",");
-    displayResultArray.splice(7, 0, ",");
-  }
-};
+// let commasResult = function () {
+//   displayLength = displayResultArray.length;
+//   if (displayLength === 4) {
+//     displayResultArray.splice(1, 0, ",");
+//   } else if (displayLength === 5) {
+//     displayResultArray.splice(1, 0);
+//     displayResultArray.splice(2, 0, ",");
+//   } else if (displayLength === 6) {
+//     displayResultArray.splice(2, 0);
+//     displayResultArray.splice(3, 0, ",");
+//   } else if (displayLength === 7) {
+//     displayResultArray.splice(3, 0);
+//     displayResultArray.splice(1, 0, ",");
+//     displayResultArray.splice(5, 0, ",");
+//   } else if (displayLength === 8) {
+//     displayResultArray.splice(1, 0);
+//     displayResultArray.splice(4, 0);
+//     displayResultArray.splice(2, 0, ",");
+//     displayResultArray.splice(6, 0, ",");
+//   } else if (displayLength === 9) {
+//     displayResultArray.splice(2, 0);
+//     displayResultArray.splice(5, 0);
+//     displayResultArray.splice(3, 0, ",");
+//     displayResultArray.splice(7, 0, ",");
+//   }
+// };
