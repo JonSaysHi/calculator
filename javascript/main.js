@@ -65,9 +65,16 @@ const division = function (x, y) {
 
 let commasForResult = function () {
   displayResultArray = Array.from(String(displayResult), myFunc);
-  commasResult();
-  displayArray = displayArray.slice(0, 10);
-  displayResult = displayResultArray.join("");
+  if (displayResultArray.length >= 10) {
+    displayResult = Number(displayResultArray.join(""));
+    displayResult = Number.parseFloat(displayResult).toExponential(1);
+    return displayResult;
+  } else {
+    commasResult();
+    displayArray = displayArray.slice(0, 10);
+    displayResult = displayResultArray.join("");
+    return displayResult;
+  }
 };
 
 const operate = function (operator, x, y) {
