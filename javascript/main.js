@@ -37,36 +37,39 @@ const getNine = document.querySelector("#nine");
 
 const addition = function (x, y) {
   displayResult = x + y;
-  commasForResult();
+  Formatting();
   actualResult = x + y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
   displayResult = x - y;
-  commasForResult();
+  Formatting();
   actualResult = x - y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
   displayResult = x * y;
-  commasForResult();
+  Formatting();
   actualResult = x * y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const division = function (x, y) {
   displayResult = x / y;
-  commasForResult();
+  Formatting();
   actualResult = x / y;
   document.querySelector(".result").textContent = displayResult;
 };
 
-let commasForResult = function () {
+let Formatting = function () {
   displayResultArray = Array.from(String(displayResult), myFunc);
   console.log(displayResultArray);
-  if (displayResultArray.length >= 10) {
+  if (displayResultArray.length >= 10 && operator == "divide") {
+    displayResult = Math.round(displayResult).toLocaleString();
+    return displayResult;
+  } else if (displayResultArray.length >= 11) {
     displayResult = Number(displayResultArray.join(""));
     displayResult = Number.parseFloat(displayResult).toExponential(0);
     return displayResult;
@@ -168,6 +171,7 @@ getDivide.addEventListener("click", () => {
     x = actualResult;
     operator = "divide";
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
@@ -176,6 +180,7 @@ getDivide.addEventListener("click", () => {
     x = actualResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   }
 });
