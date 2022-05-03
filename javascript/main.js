@@ -77,7 +77,7 @@ let Formatting = function () {
   if (WithoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
     return displayResult;
-  } else if ((WithoutDecimalsLength = 9)) {
+  } else if (WithoutDecimalsLength == 9) {
     actualResult = Math.round(actualResult);
     displayResult = Math.round(actualResult).toLocaleString();
     console.log(actualResult);
