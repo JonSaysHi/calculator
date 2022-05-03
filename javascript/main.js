@@ -1,11 +1,15 @@
 let displayArray = [];
 let displayResult;
+let actualArray = [];
+let actualResult;
 let displayLength;
+let displayResultArray;
 let x;
 let y;
 let operator;
 let typeX;
 let typeY;
+let myFunc = (num) => Number(num);
 
 // All querySelectors for the buttons of the calculator
 
@@ -33,21 +37,33 @@ const getNine = document.querySelector("#nine");
 
 const addition = function (x, y) {
   displayResult = x + y;
+  console.log("this is the DP before " + displayResult);
+  displayResultArray = Array.from(String(displayResult), myFunc);
+  console.log("this is the DP after " + displayResultArray);
+  commasResult();
+  displayResult = displayResultArray.join("");
+  actualResult = x + y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
   displayResult = x - y;
+  console.log("this is the DP" + displayResult);
+  actualResult = x - y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
   displayResult = x * y;
+  console.log("this is the DP" + displayResult);
+  actualResult = x * y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const division = function (x, y) {
   displayResult = x / y;
+  console.log("this is the DP" + displayResult);
+  actualResult = x / y;
   document.querySelector(".result").textContent = displayResult;
 };
 
@@ -68,18 +84,24 @@ const operate = function (operator, x, y) {
 // Functions for creating the visual display of numbers
 
 let display = function () {
-  // commas();
-
   displayResult = displayArray.join("");
-  // displayArray = displayArray.slice(0, 10);
-  displayArray = displayArray.slice(0, 8);
-  displayResult = displayResult;
+  // console.log(actualResult);
+  commas();
+  displayArray = displayArray.slice(0, 10);
+  // displayArray = displayArray.slice(0, 8);
   document.querySelector(".result").textContent = displayResult;
+};
+
+let actual = function () {
+  actualResult = Number(actualArray.join(""));
+  actualArray = actualArray.slice(0, 8);
 };
 
 function createDisplay(number) {
   displayArray.push(number);
+  actualArray.push(number);
   display();
+  actual();
 }
 
 // Event listeners for number buttons
@@ -130,12 +152,12 @@ getDivide.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "undefined" && typeY == "undefined") {
-    x = Number(displayResult);
+    x = actualResult;
     operator = "divide";
     displayArray.splice(0, displayArray.length);
     console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
-    y = Number(displayResult);
+    y = actualResult;
     operate(operator, x, y);
     operator = "divide";
     x = displayResult;
@@ -149,17 +171,19 @@ getMultiply.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "undefined" && typeY == "undefined") {
-    x = Number(displayResult);
+    x = actualResult;
     operator = "multiply";
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
-    y = Number(displayResult);
+    y = actualResult;
     operate(operator, x, y);
     operator = "multiply";
     x = displayResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   }
 });
@@ -168,17 +192,19 @@ getSubtract.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "undefined" && typeY == "undefined") {
-    x = Number(displayResult);
+    x = actualResult;
     operator = "subtract";
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
-    y = Number(displayResult);
+    y = actualResult;
     operate(operator, x, y);
     operator = "subtract";
     x = displayResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   }
 });
@@ -187,17 +213,19 @@ getAdd.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "undefined" && typeY == "undefined") {
-    x = Number(displayResult);
+    x = actualResult;
     operator = "add";
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
-    y = Number(displayResult);
+    y = actualResult;
     operate(operator, x, y);
     operator = "add";
     x = displayResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
     console.log(operator);
   }
 });
@@ -206,41 +234,67 @@ getEquals.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "number" && typeY == "undefined") {
-    y = Number(displayResult);
+    y = actualResult;
     operate(operator, x, y);
     x = undefined;
-    console.log("x = " + x);
     y = undefined;
-    console.log("y = " + y);
     displayArray.splice(0, displayArray.length);
+    actualArray.splice(0, actualArray.length);
   }
 });
 
 // This function adds and removes commas for the corresponding length
 
-// let commas = function () {
-//   displayLength = displayArray.length;
-//   if (displayLength === 4) {
-//     displayArray.splice(1, 0, ",");
-//   } else if (displayLength === 6) {
-//     displayArray.splice(1, 1);
-//     displayArray.splice(2, 0, ",");
-//   } else if (displayLength === 7) {
-//     displayArray.splice(2, 1);
-//     displayArray.splice(3, 0, ",");
-//   } else if (displayLength === 8) {
-//     displayArray.splice(3, 1);
-//     displayArray.splice(1, 0, ",");
-//     displayArray.splice(5, 0, ",");
-//   } else if (displayLength === 10) {
-//     displayArray.splice(1, 1);
-//     displayArray.splice(4, 1);
-//     displayArray.splice(2, 0, ",");
-//     displayArray.splice(6, 0, ",");
-//   } else if (displayLength === 11) {
-//     displayArray.splice(2, 1);
-//     displayArray.splice(5, 1);
-//     displayArray.splice(3, 0, ",");
-//     displayArray.splice(7, 0, ",");
-//   }
-// };
+let commas = function () {
+  displayLength = displayArray.length;
+  if (displayLength === 3) {
+    displayArray.splice(1, 0, ",");
+  } else if (displayLength === 5) {
+    displayArray.splice(1, 1);
+    displayArray.splice(2, 0, ",");
+  } else if (displayLength === 6) {
+    displayArray.splice(2, 1);
+    displayArray.splice(3, 0, ",");
+  } else if (displayLength === 7) {
+    displayArray.splice(3, 1);
+    displayArray.splice(1, 0, ",");
+    displayArray.splice(5, 0, ",");
+  } else if (displayLength === 9) {
+    displayArray.splice(1, 1);
+    displayArray.splice(4, 1);
+    displayArray.splice(2, 0, ",");
+    displayArray.splice(6, 0, ",");
+  } else if (displayLength === 10) {
+    displayArray.splice(2, 1);
+    displayArray.splice(5, 1);
+    displayArray.splice(3, 0, ",");
+    displayArray.splice(7, 0, ",");
+  }
+};
+
+let commasResult = function () {
+  displayLength = displayResultArray.length;
+  if (displayLength === 4) {
+    displayResultArray.splice(1, 0, ",");
+  } else if (displayLength === 5) {
+    displayResultArray.splice(1, 0);
+    displayResultArray.splice(2, 0, ",");
+  } else if (displayLength === 6) {
+    displayResultArray.splice(2, 0);
+    displayResultArray.splice(3, 0, ",");
+  } else if (displayLength === 7) {
+    displayResultArray.splice(3, 0);
+    displayResultArray.splice(1, 0, ",");
+    displayResultArray.splice(5, 0, ",");
+  } else if (displayLength === 8) {
+    displayResultArray.splice(1, 0);
+    displayResultArray.splice(4, 0);
+    displayResultArray.splice(2, 0, ",");
+    displayResultArray.splice(6, 0, ",");
+  } else if (displayLength === 9) {
+    displayResultArray.splice(2, 0);
+    displayResultArray.splice(5, 0);
+    displayResultArray.splice(3, 0, ",");
+    displayResultArray.splice(7, 0, ",");
+  }
+};
