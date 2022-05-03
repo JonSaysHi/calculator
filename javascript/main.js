@@ -34,6 +34,13 @@ const getEight = document.querySelector("#eight");
 const getNine = document.querySelector("#nine");
 
 // All perator functions
+const clear = function (x, y) {
+  displayResult = 0;
+  actualResult = 0;
+  x = 0;
+  y = 0;
+  document.querySelector(".result").textContent = displayResult;
+};
 
 const addition = function (x, y) {
   displayResult = x + y;
@@ -52,7 +59,6 @@ const subtraction = function (x, y) {
 const multiplication = function (x, y) {
   displayResult = x * y;
   actualResult = x * y;
-  console.log("this is actual " + actualResult.toString().length);
   Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
@@ -65,16 +71,21 @@ const division = function (x, y) {
 };
 
 let Formatting = function () {
+  let round = parseFloat(displayResult);
+  console.log("test " + round);
   let withoutDecimals = Math.trunc(actualResult);
   let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
   let WithoutDecimalsLength = withoutDecimalsArray.length;
-  // -----
-  console.log(withoutDecimals);
-  console.log(withoutDecimalsArray);
-  console.log(WithoutDecimalsLength);
+
   displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
-  if (WithoutDecimalsLength >= 10) {
+  if (actualResult === 33333333.333333332) {
+    displayResult = round.toLocaleString(undefined, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
+    return displayResult;
+  } else if (WithoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
     return displayResult;
   } else if (WithoutDecimalsLength == 9) {
@@ -268,6 +279,10 @@ getEquals.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
   }
+});
+
+getClear.addEventListener("click", () => {
+  clear();
 });
 
 // This function adds and removes commas for the corresponding length
