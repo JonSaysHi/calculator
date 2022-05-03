@@ -67,7 +67,7 @@ let commasForResult = function () {
   displayResultArray = Array.from(String(displayResult), myFunc);
   if (displayResultArray.length >= 10) {
     displayResult = Number(displayResultArray.join(""));
-    displayResult = Number.parseFloat(displayResult).toExponential(1);
+    displayResult = Number.parseFloat(displayResult).toExponential(0);
     return displayResult;
   } else {
     commasResult();
@@ -174,7 +174,7 @@ getDivide.addEventListener("click", () => {
     y = actualResult;
     operate(operator, x, y);
     operator = "divide";
-    x = displayResult;
+    x = actualResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
     console.log(operator);
@@ -194,7 +194,7 @@ getMultiply.addEventListener("click", () => {
     y = actualResult;
     operate(operator, x, y);
     operator = "multiply";
-    x = displayResult;
+    x = actualResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
@@ -215,7 +215,7 @@ getSubtract.addEventListener("click", () => {
     y = actualResult;
     operate(operator, x, y);
     operator = "subtract";
-    x = displayResult;
+    x = actualResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
