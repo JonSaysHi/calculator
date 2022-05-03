@@ -9,25 +9,25 @@ let typeY;
 
 // All querySelectors for the buttons of the calculator
 
-const clear = document.querySelector("#clear");
-const plusOrMinus = document.querySelector("#plusminus");
-const percent = document.querySelector("#percent");
-const divide = document.querySelector("#divide");
-const multiply = document.querySelector("#multiply");
-const subtract = document.querySelector("#subtract");
-const add = document.querySelector("#add");
-const equals = document.querySelector("#equals");
-const period = document.querySelector("#period");
-const zero = document.querySelector("#zero");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
+const getClear = document.querySelector("#clear");
+const getPlusOrMinus = document.querySelector("#plusminus");
+const getPercent = document.querySelector("#percent");
+const getDivide = document.querySelector("#divide");
+const getMultiply = document.querySelector("#multiply");
+const getSubtract = document.querySelector("#subtract");
+const getAdd = document.querySelector("#add");
+const getEquals = document.querySelector("#equals");
+const getPeriod = document.querySelector("#period");
+const getZero = document.querySelector("#zero");
+const getOne = document.querySelector("#one");
+const getTwo = document.querySelector("#two");
+const getThree = document.querySelector("#three");
+const getFour = document.querySelector("#four");
+const getFive = document.querySelector("#five");
+const getSix = document.querySelector("#six");
+const getSeven = document.querySelector("#seven");
+const getEight = document.querySelector("#eight");
+const getNine = document.querySelector("#nine");
 
 // All perator functions
 
@@ -84,49 +84,49 @@ function createDisplay(number) {
 
 // Event listeners for number buttons
 
-zero.addEventListener("click", () => {
+getZero.addEventListener("click", () => {
   createDisplay(0);
 });
 
-one.addEventListener("click", () => {
+getOne.addEventListener("click", () => {
   createDisplay(1);
 });
 
-two.addEventListener("click", () => {
+getTwo.addEventListener("click", () => {
   createDisplay(2);
 });
 
-three.addEventListener("click", () => {
+getThree.addEventListener("click", () => {
   createDisplay(3);
 });
 
-four.addEventListener("click", () => {
+getFour.addEventListener("click", () => {
   createDisplay(4);
 });
 
-five.addEventListener("click", () => {
+getFive.addEventListener("click", () => {
   createDisplay(5);
 });
 
-six.addEventListener("click", () => {
+getSix.addEventListener("click", () => {
   createDisplay(6);
 });
 
-seven.addEventListener("click", () => {
+getSeven.addEventListener("click", () => {
   createDisplay(7);
 });
 
-eight.addEventListener("click", () => {
+getEight.addEventListener("click", () => {
   createDisplay(8);
 });
 
-nine.addEventListener("click", () => {
+getNine.addEventListener("click", () => {
   createDisplay(9);
 });
 
 // Event listeners for operators
 
-divide.addEventListener("click", () => {
+getDivide.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "undefined" && typeY == "undefined") {
@@ -144,61 +144,61 @@ divide.addEventListener("click", () => {
   }
 });
 
-multiply.addEventListener("click", () => {
-  let typeX = typeof x;
-  if (typeX == "undefined") {
+getMultiply.addEventListener("click", () => {
+  typeX = typeof x;
+  typeY = typeof y;
+  if (typeX == "undefined" && typeY == "undefined") {
     x = Number(displayResult);
     operator = "multiply";
     displayArray.splice(0, displayArray.length);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
-  } else if (typeX == "number") {
+  } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    displayArray.splice(0, displayArray.length);
     multiplication(x, y);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
     x = displayResult;
+    console.log("x = " + x);
+    y = undefined;
+    console.log("y = " + y);
+    displayArray.splice(0, displayArray.length);
   }
 });
 
-add.addEventListener("click", () => {
-  let typeX = typeof x;
-  if (typeX == "undefined") {
-    x = Number(displayResult);
-    operator = "add";
-    displayArray.splice(0, displayArray.length);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
-  } else if (typeX == "number") {
-    y = Number(displayResult);
-    displayArray.splice(0, displayArray.length);
-    addition(x, y);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
-    x = displayResult;
-  }
-});
-
-subtract.addEventListener("click", () => {
-  let typeX = typeof x;
-  if (typeX == "undefined") {
+getSubtract.addEventListener("click", () => {
+  typeX = typeof x;
+  typeY = typeof y;
+  if (typeX == "undefined" && typeY == "undefined") {
     x = Number(displayResult);
     operator = "subtract";
     displayArray.splice(0, displayArray.length);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
-  } else if (typeX == "number") {
+  } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    displayArray.splice(0, displayArray.length);
     subtraction(x, y);
-    console.log("x is " + typeX);
-    console.log("y is " + typeX);
     x = displayResult;
+    console.log("x = " + x);
+    y = undefined;
+    console.log("y = " + y);
+    displayArray.splice(0, displayArray.length);
   }
 });
 
-equals.addEventListener("click", () => {
+getAdd.addEventListener("click", () => {
+  typeX = typeof x;
+  typeY = typeof y;
+  if (typeX == "undefined" && typeY == "undefined") {
+    x = Number(displayResult);
+    operator = "add";
+    displayArray.splice(0, displayArray.length);
+  } else if (typeX == "number" && typeY == "undefined") {
+    y = Number(displayResult);
+    addition(x, y);
+    x = displayResult;
+    console.log("x = " + x);
+    y = undefined;
+    console.log("y = " + y);
+    displayArray.splice(0, displayArray.length);
+  }
+});
+
+getEquals.addEventListener("click", () => {
   typeX = typeof x;
   typeY = typeof y;
   if (typeX == "number" && typeY == "undefined") {
