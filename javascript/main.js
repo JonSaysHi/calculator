@@ -21,7 +21,7 @@ const getMultiply = document.querySelector("#multiply");
 const getSubtract = document.querySelector("#subtract");
 const getAdd = document.querySelector("#add");
 const getEquals = document.querySelector("#equals");
-const getPeriod = document.querySelector("#period");
+const getDecimal = document.querySelector("#decimal");
 const getZero = document.querySelector("#zero");
 const getOne = document.querySelector("#one");
 const getTwo = document.querySelector("#two");
@@ -37,42 +37,51 @@ const getNine = document.querySelector("#nine");
 
 const addition = function (x, y) {
   displayResult = x + y;
-  Formatting();
   actualResult = x + y;
+  Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
   displayResult = x - y;
-  Formatting();
   actualResult = x - y;
+  Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
   displayResult = x * y;
-  Formatting();
   actualResult = x * y;
+  console.log("this is actual " + actualResult.toString().length);
+  Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
 
 const division = function (x, y) {
   displayResult = x / y;
-  Formatting();
   actualResult = x / y;
+  Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
 
 let Formatting = function () {
+  let withoutDecimals = Math.trunc(actualResult);
+  let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
+  let WithoutDecimalsLength = withoutDecimalsArray.length;
+  // -----
+  console.log(withoutDecimals);
+  console.log(withoutDecimalsArray);
+  console.log(WithoutDecimalsLength);
+  displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
-  console.log(displayResultArray);
-  if (displayResultArray.length >= 10 && operator == "divide") {
-    displayResult = Math.round(displayResult).toLocaleString();
+  if (WithoutDecimalsLength >= 10) {
+    displayResult = Number.parseFloat(actualResult).toExponential(0);
     return displayResult;
-  } else if (displayResultArray.length >= 11) {
-    displayResult = Number(displayResultArray.join(""));
-    displayResult = Number.parseFloat(displayResult).toExponential(0);
-    return displayResult;
+  } else if ((WithoutDecimalsLength = 9)) {
+    actualResult = Math.round(actualResult);
+    displayResult = Math.round(actualResult).toLocaleString();
+    console.log(actualResult);
+    return displayResult && actualResult;
   } else {
     // commasResult();
     // displayArray = displayArray.slice(0, 10);
