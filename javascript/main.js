@@ -53,7 +53,7 @@ const division = function (x, y) {
 
 const operate = function (operator, x, y) {
   if (operator === "add") {
-    additon(x, y);
+    addition(x, y);
   } else if (operator === "subtract") {
     subtraction(x, y);
   } else if (operator === "multiply") {
@@ -133,14 +133,15 @@ getDivide.addEventListener("click", () => {
     x = Number(displayResult);
     operator = "divide";
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    division(x, y);
+    operate(operator, x, y);
+    operator = "divide";
     x = displayResult;
-    console.log("x = " + x);
     y = undefined;
-    console.log("y = " + y);
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   }
 });
 
@@ -151,14 +152,15 @@ getMultiply.addEventListener("click", () => {
     x = Number(displayResult);
     operator = "multiply";
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    multiplication(x, y);
+    operate(operator, x, y);
+    operator = "multiply";
     x = displayResult;
-    console.log("x = " + x);
     y = undefined;
-    console.log("y = " + y);
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   }
 });
 
@@ -169,14 +171,15 @@ getSubtract.addEventListener("click", () => {
     x = Number(displayResult);
     operator = "subtract";
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    subtraction(x, y);
+    operate(operator, x, y);
+    operator = "subtract";
     x = displayResult;
-    console.log("x = " + x);
     y = undefined;
-    console.log("y = " + y);
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   }
 });
 
@@ -187,14 +190,15 @@ getAdd.addEventListener("click", () => {
     x = Number(displayResult);
     operator = "add";
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   } else if (typeX == "number" && typeY == "undefined") {
     y = Number(displayResult);
-    addition(x, y);
+    operate(operator, x, y);
+    operator = "add";
     x = displayResult;
-    console.log("x = " + x);
     y = undefined;
-    console.log("y = " + y);
     displayArray.splice(0, displayArray.length);
+    console.log(operator);
   }
 });
 
