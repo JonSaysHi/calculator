@@ -1,5 +1,5 @@
 let displayArray = [];
-let displayResult;
+let displayResult = 0;
 let actualArray = [];
 let actualResult;
 let displayLength;
@@ -117,7 +117,11 @@ function createDisplay(number) {
 // Event listeners for number buttons
 
 getZero.addEventListener("click", () => {
-  createDisplay(0);
+  if (displayResult == 0 || displayResult == "undefined") {
+    displayResult = 0;
+  } else {
+    createDisplay(0);
+  }
 });
 
 getOne.addEventListener("click", () => {
