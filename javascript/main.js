@@ -4,6 +4,8 @@ let displayLength;
 let x;
 let y;
 let operator;
+let typeX;
+let typeY;
 
 // All querySelectors for the buttons of the calculator
 
@@ -30,11 +32,13 @@ const nine = document.querySelector("#nine");
 // All perator functions
 
 const addition = function (x, y) {
-  return x + y;
+  displayResult = x + y;
+  document.querySelector(".result").textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
-  return x - y;
+  displayResult = x - y;
+  document.querySelector(".result").textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
@@ -123,29 +127,89 @@ nine.addEventListener("click", () => {
 // Event listeners for operators
 
 divide.addEventListener("click", () => {
-  let typeX = typeof x;
-  let typeY = typeof y;
-  if (typeX == "undefined") {
+  typeX = typeof x;
+  typeY = typeof y;
+  if (typeX == "undefined" && typeY == "undefined") {
     x = Number(displayResult);
     operator = "divide";
+    displayArray.splice(0, displayArray.length);
+  } else if (typeX == "number" && typeY == "undefined") {
+    y = Number(displayResult);
+    division(x, y);
+    x = displayResult;
+    console.log("x = " + x);
+    y = undefined;
+    console.log("y = " + y);
+    displayArray.splice(0, displayArray.length);
+  }
+});
+
+multiply.addEventListener("click", () => {
+  let typeX = typeof x;
+  if (typeX == "undefined") {
+    x = Number(displayResult);
+    operator = "multiply";
     displayArray.splice(0, displayArray.length);
     console.log("x is " + typeX);
     console.log("y is " + typeX);
   } else if (typeX == "number") {
     y = Number(displayResult);
     displayArray.splice(0, displayArray.length);
-    division(x, y);
+    multiplication(x, y);
     console.log("x is " + typeX);
     console.log("y is " + typeX);
+    x = displayResult;
+  }
+});
 
+add.addEventListener("click", () => {
+  let typeX = typeof x;
+  if (typeX == "undefined") {
+    x = Number(displayResult);
+    operator = "add";
+    displayArray.splice(0, displayArray.length);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
+  } else if (typeX == "number") {
+    y = Number(displayResult);
+    displayArray.splice(0, displayArray.length);
+    addition(x, y);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
+    x = displayResult;
+  }
+});
+
+subtract.addEventListener("click", () => {
+  let typeX = typeof x;
+  if (typeX == "undefined") {
+    x = Number(displayResult);
+    operator = "subtract";
+    displayArray.splice(0, displayArray.length);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
+  } else if (typeX == "number") {
+    y = Number(displayResult);
+    displayArray.splice(0, displayArray.length);
+    subtraction(x, y);
+    console.log("x is " + typeX);
+    console.log("y is " + typeX);
     x = displayResult;
   }
 });
 
 equals.addEventListener("click", () => {
-  y = Number(displayResult);
-  displayArray.splice(0, displayArray.length);
-  operate(operator, x, y);
+  typeX = typeof x;
+  typeY = typeof y;
+  if (typeX == "number" && typeY == "undefined") {
+    y = Number(displayResult);
+    operate(operator, x, y);
+    x = undefined;
+    console.log("x = " + x);
+    y = undefined;
+    console.log("y = " + y);
+    displayArray.splice(0, displayArray.length);
+  }
 });
 
 // This function adds and removes commas for the corresponding length
