@@ -37,34 +37,37 @@ const getNine = document.querySelector("#nine");
 
 const addition = function (x, y) {
   displayResult = x + y;
-  console.log("this is the DP before " + displayResult);
-  displayResultArray = Array.from(String(displayResult), myFunc);
-  console.log("this is the DP after " + displayResultArray);
-  commasResult();
-  displayResult = displayResultArray.join("");
+  commasForResult();
   actualResult = x + y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
   displayResult = x - y;
-  console.log("this is the DP" + displayResult);
+  commasForResult();
   actualResult = x - y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
   displayResult = x * y;
-  console.log("this is the DP" + displayResult);
+  commasForResult();
   actualResult = x * y;
   document.querySelector(".result").textContent = displayResult;
 };
 
 const division = function (x, y) {
   displayResult = x / y;
-  console.log("this is the DP" + displayResult);
+  commasForResult();
   actualResult = x / y;
   document.querySelector(".result").textContent = displayResult;
+};
+
+let commasForResult = function () {
+  displayResultArray = Array.from(String(displayResult), myFunc);
+  commasResult();
+  displayArray = displayArray.slice(0, 10);
+  displayResult = displayResultArray.join("");
 };
 
 const operate = function (operator, x, y) {
