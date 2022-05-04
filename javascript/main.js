@@ -76,8 +76,8 @@ const division = function (x, y) {
 
 let Formatting = function () {
   withoutDecimals = Math.trunc(actualResult);
-  withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
-  withoutDecimalsLength = withoutDecimalsArray.length;
+  let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
+  let withoutDecimalsLength = withoutDecimalsArray.length;
 
   displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
@@ -114,17 +114,24 @@ const operate = function (operator, x, y) {
 
 let display = function () {
   displayResult = displayArray.join("");
-  console.log(displayResult);
-  displayResult = Number(displayResult).toLocaleString();
-  console.log(displayResult);
-  // commas();
-  displayArray = displayArray.slice(0, 8);
-  document.querySelector(".result").textContent = displayResult;
+  console.log("Display result:" + displayResult);
+  let [wholeNumStr, decimalStr] = displayResult.split(".");
+  if (decimalStr) {
+    displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
+    document.querySelector(".result").textContent = displayResult;
+  } else {
+    displayResult = Number(displayResult).toLocaleString();
+    console.log("DisplayResult w/ commas:" + displayResult);
+    // commas();
+    displayArray = displayArray.slice(0, 8);
+    document.querySelector(".result").textContent = displayResult;
+  }
 };
 
 let actual = function () {
   actualResult = Number(actualArray.join(""));
   actualArray = actualArray.slice(0, 8);
+  console.log("Actual result:" + actualResult);
 };
 
 function createDisplay(number) {
@@ -290,12 +297,27 @@ getEquals.addEventListener("click", () => {
 
 getDecimal.addEventListener("click", () => {
   if (actualArray.length === 0) {
-    createDisplay(0);
-    createDisplay(".");
+    displayArray.push(0 + ".");
+    displayResult = displayArray.join("");
+    displayArray = displayArray.slice(0, 8);
+    document.querySelector(".result").textContent = displayResult;
+
+    actualArray.push(0 + ".");
+    actualResult = Number(actualArray.join(""));
+    actualArray = actualArray.slice(0, 8);
+
     decimalClicked = true;
   }
   if (decimalClicked == false) {
-    createDisplay(".");
+    displayArray.push(".");
+    displayResult = displayArray.join("");
+    displayArray = displayArray.slice(0, 8);
+    document.querySelector(".result").textContent = displayResult;
+
+    actualArray.push(0 + ".");
+    actualResult = Number(actualArray.join(""));
+    actualArray = actualArray.slice(0, 8);
+
     decimalClicked = true;
   } else {
     return;
