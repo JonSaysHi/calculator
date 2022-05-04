@@ -111,8 +111,10 @@ const operate = function (operator, x, y) {
 
 let display = function () {
   displayResult = displayArray.join("");
-  commas();
-  displayArray = displayArray.slice(0, 10);
+  displayResult = Number(displayResult).toLocaleString();
+  // commas();
+  displayArray = displayArray.slice(0, 8);
+
   document.querySelector(".result").textContent = displayResult;
 };
 
@@ -302,32 +304,32 @@ getClear.addEventListener("click", () => {
 
 // This function adds and removes commas for the corresponding length
 
-let commas = function () {
-  displayLength = displayArray.length;
-  if (displayLength === 3) {
-    displayArray.splice(1, 0, ",");
-  } else if (displayLength === 5) {
-    displayArray.splice(1, 1);
-    displayArray.splice(2, 0, ",");
-  } else if (displayLength === 6) {
-    displayArray.splice(2, 1);
-    displayArray.splice(3, 0, ",");
-  } else if (displayLength === 7) {
-    displayArray.splice(3, 1);
-    displayArray.splice(1, 0, ",");
-    displayArray.splice(5, 0, ",");
-  } else if (displayLength === 9) {
-    displayArray.splice(1, 1);
-    displayArray.splice(4, 1);
-    displayArray.splice(2, 0, ",");
-    displayArray.splice(6, 0, ",");
-  } else if (displayLength === 10) {
-    displayArray.splice(2, 1);
-    displayArray.splice(5, 1);
-    displayArray.splice(3, 0, ",");
-    displayArray.splice(7, 0, ",");
-  }
-};
+// let commas = function () {
+//   displayLength = displayArray.length;
+//   if (displayLength === 3) {
+//     displayArray.splice(1, 0, ",");
+//   } else if (displayLength === 5) {
+//     displayArray.splice(1, 1);
+//     displayArray.splice(2, 0, ",");
+//   } else if (displayLength === 6) {
+//     displayArray.splice(2, 1);
+//     displayArray.splice(3, 0, ",");
+//   } else if (displayLength === 7) {
+//     displayArray.splice(3, 1);
+//     displayArray.splice(1, 0, ",");
+//     displayArray.splice(5, 0, ",");
+//   } else if (displayLength === 9) {
+//     displayArray.splice(1, 1);
+//     displayArray.splice(4, 1);
+//     displayArray.splice(2, 0, ",");
+//     displayArray.splice(6, 0, ",");
+//   } else if (displayLength === 10) {
+//     displayArray.splice(2, 1);
+//     displayArray.splice(5, 1);
+//     displayArray.splice(3, 0, ",");
+//     displayArray.splice(7, 0, ",");
+//   }
+// };
 
 // let commasResult = function () {
 //   displayLength = displayResultArray.length;
