@@ -41,6 +41,8 @@ const clear = function (x, y) {
   y = 0;
   displayResult = 0;
   actualResult = 0;
+  displayArray = [];
+  actualArray = [];
   document.querySelector(".result").textContent = displayResult;
 };
 
