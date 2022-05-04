@@ -12,6 +12,7 @@ let typeY;
 let myFunc = (num) => Number(num);
 let decimalClicked = false;
 let withoutDecimals;
+let withCommasArray = [];
 
 // All querySelectors for the buttons of the calculator
 
@@ -118,6 +119,8 @@ let display = function () {
   let [wholeNumStr, decimalStr] = displayResult.split(".");
   if (decimalStr) {
     displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
+    withCommasArray = displayResult.split("");
+    displayArray = withCommasArray.slice(0, 9);
     document.querySelector(".result").textContent = displayResult;
   } else {
     displayResult = Number(displayResult).toLocaleString();
@@ -297,12 +300,12 @@ getEquals.addEventListener("click", () => {
 
 getDecimal.addEventListener("click", () => {
   if (actualArray.length === 0) {
-    displayArray.push(0 + ".");
+    displayArray.push(".");
     displayResult = displayArray.join("");
     displayArray = displayArray.slice(0, 8);
     document.querySelector(".result").textContent = displayResult;
 
-    actualArray.push(0 + ".");
+    actualArray.push(".");
     actualResult = Number(actualArray.join(""));
     actualArray = actualArray.slice(0, 8);
 
@@ -314,7 +317,7 @@ getDecimal.addEventListener("click", () => {
     displayArray = displayArray.slice(0, 8);
     document.querySelector(".result").textContent = displayResult;
 
-    actualArray.push(0 + ".");
+    actualArray.push(".");
     actualResult = Number(actualArray.join(""));
     actualArray = actualArray.slice(0, 8);
 
