@@ -11,6 +11,7 @@ let typeX;
 let typeY;
 let myFunc = (num) => Number(num);
 let decimalClicked = false;
+let withoutDecimals;
 
 // All querySelectors for the buttons of the calculator
 
@@ -72,16 +73,16 @@ const division = function (x, y) {
 };
 
 let Formatting = function () {
-  let withoutDecimals = Math.trunc(actualResult);
-  let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
-  let WithoutDecimalsLength = withoutDecimalsArray.length;
+  withoutDecimals = Math.trunc(actualResult);
+  withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
+  withoutDecimalsLength = withoutDecimalsArray.length;
 
   displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
-  if (WithoutDecimalsLength >= 10) {
+  if (withoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
     return displayResult;
-  } else if (WithoutDecimalsLength >= 9) {
+  } else if (withoutDecimalsLength >= 9) {
     actualResult = Math.round(actualResult);
     displayResult = Math.round(actualResult).toLocaleString();
     return displayResult && actualResult;
@@ -111,10 +112,11 @@ const operate = function (operator, x, y) {
 
 let display = function () {
   displayResult = displayArray.join("");
+  console.log(displayResult);
   displayResult = Number(displayResult).toLocaleString();
+  console.log(displayResult);
   // commas();
   displayArray = displayArray.slice(0, 8);
-
   document.querySelector(".result").textContent = displayResult;
 };
 
