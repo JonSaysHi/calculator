@@ -72,23 +72,16 @@ const division = function (x, y) {
 
 let Formatting = function () {
   let round = parseFloat(displayResult);
-  console.log("test " + round);
   let withoutDecimals = Math.trunc(actualResult);
   let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
   let WithoutDecimalsLength = withoutDecimalsArray.length;
 
   displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
-  if (actualResult === 33333333.333333332) {
-    displayResult = round.toLocaleString(undefined, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
-    });
-    return displayResult;
-  } else if (WithoutDecimalsLength >= 10) {
+  if (WithoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
     return displayResult;
-  } else if (WithoutDecimalsLength == 9) {
+  } else if (WithoutDecimalsLength >= 9) {
     actualResult = Math.round(actualResult);
     displayResult = Math.round(actualResult).toLocaleString();
     console.log(actualResult);
@@ -279,6 +272,10 @@ getEquals.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
   }
+});
+
+getDecimal.addEventListener("click", () => {
+  createDisplay(".");
 });
 
 getClear.addEventListener("click", () => {
