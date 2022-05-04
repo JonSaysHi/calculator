@@ -10,6 +10,7 @@ let operator;
 let typeX;
 let typeY;
 let myFunc = (num) => Number(num);
+let decimalClicked = false;
 
 // All querySelectors for the buttons of the calculator
 
@@ -184,6 +185,7 @@ getDivide.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -193,6 +195,7 @@ getDivide.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   }
 });
 
@@ -205,6 +208,7 @@ getMultiply.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -214,6 +218,7 @@ getMultiply.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   }
 });
 
@@ -226,6 +231,7 @@ getSubtract.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -235,6 +241,7 @@ getSubtract.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   }
 });
 
@@ -247,6 +254,7 @@ getAdd.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -256,6 +264,7 @@ getAdd.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
+    decimalClicked = false;
   }
 });
 
@@ -269,11 +278,17 @@ getEquals.addEventListener("click", () => {
     y = undefined;
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
+    decimalClicked = false;
   }
 });
 
 getDecimal.addEventListener("click", () => {
-  createDisplay(".");
+  if (decimalClicked == false) {
+    createDisplay(".");
+    decimalClicked = true;
+  } else {
+    return;
+  }
 });
 
 getClear.addEventListener("click", () => {
