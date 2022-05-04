@@ -13,6 +13,8 @@ let myFunc = (num) => Number(num);
 let decimalClicked = false;
 let withoutDecimals;
 let withCommasArray = [];
+let containComma;
+let containPeriod;
 
 // All querySelectors for the buttons of the calculator
 
@@ -117,17 +119,30 @@ let display = function () {
   displayResult = displayArray.join("");
   console.log("Display result:" + displayResult);
   let [wholeNumStr, decimalStr] = displayResult.split(".");
-  if (decimalStr) {
-    displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
-    withCommasArray = displayResult.split("");
-    displayArray = withCommasArray.slice(0, 9);
+  containComma = displayResult.includes(",");
+  containPeriod = displayResult.includes(".");
+  if (containComma && containPeriod) {
+    displayResult = displayArray.join("");
+    displayArray = displayArray.slice(0, 9);
     document.querySelector(".result").textContent = displayResult;
+  } else if (decimalStr) {
+    displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
+    // withCommasArray = displayResult.split("");
+    // console.log(withCommasArray);
+    // displayArray = withCommasArray.slice(0, 9);
+    document.querySelector(".result").textContent = displayResult;
+    containComma = displayResult.includes(",");
+    console.log(containComma);
   } else {
     displayResult = Number(displayResult).toLocaleString();
+    // withCommasArray = displayResult.split("");
+    // console.log(withCommasArray);
     console.log("DisplayResult w/ commas:" + displayResult);
     // commas();
     displayArray = displayArray.slice(0, 8);
     document.querySelector(".result").textContent = displayResult;
+    containComma = displayResult.includes(",");
+    console.log(containComma);
   }
 };
 
@@ -300,7 +315,7 @@ getEquals.addEventListener("click", () => {
 
 getDecimal.addEventListener("click", () => {
   if (actualArray.length === 0) {
-    displayArray.push(".");
+    displayArray.push(0, ".");
     displayResult = displayArray.join("");
     displayArray = displayArray.slice(0, 8);
     document.querySelector(".result").textContent = displayResult;
@@ -308,19 +323,19 @@ getDecimal.addEventListener("click", () => {
     actualArray.push(".");
     actualResult = Number(actualArray.join(""));
     actualArray = actualArray.slice(0, 8);
-
+    // createDisplay(0 + ".");
     decimalClicked = true;
-  }
-  if (decimalClicked == false) {
+  } else if (decimalClicked == false) {
+    displayArray = displayResult.split("");
     displayArray.push(".");
     displayResult = displayArray.join("");
-    displayArray = displayArray.slice(0, 8);
+    displayArray = displayArray.slice(0, 9);
     document.querySelector(".result").textContent = displayResult;
 
     actualArray.push(".");
     actualResult = Number(actualArray.join(""));
-    actualArray = actualArray.slice(0, 8);
-
+    actualArray = actualArray.slice(0, 9);
+    // createDisplay(".");
     decimalClicked = true;
   } else {
     return;
