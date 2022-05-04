@@ -15,6 +15,17 @@ let withoutDecimals;
 let withCommasArray = [];
 let containComma;
 let containPeriod;
+let disableAtLength;
+let disableZero = false;
+let disableOne = false;
+let disableTwo = false;
+let disableThree = false;
+let disableFour = false;
+let disableFive = false;
+let disableSix = false;
+let disableSeven = false;
+let disableEight = false;
+let disableNine = false;
 
 // All querySelectors for the buttons of the calculator
 
@@ -37,6 +48,7 @@ const getSix = document.querySelector("#six");
 const getSeven = document.querySelector("#seven");
 const getEight = document.querySelector("#eight");
 const getNine = document.querySelector("#nine");
+const getResult = document.querySelector(".result");
 
 // All perator functions
 const clear = function (x, y) {
@@ -46,35 +58,35 @@ const clear = function (x, y) {
   actualResult = 0;
   displayArray = [];
   actualArray = [];
-  document.querySelector(".result").textContent = displayResult;
+  getResult.textContent = displayResult;
 };
 
 const addition = function (x, y) {
   displayResult = x + y;
   actualResult = x + y;
   Formatting();
-  document.querySelector(".result").textContent = displayResult;
+  getResult.textContent = displayResult;
 };
 
 const subtraction = function (x, y) {
   displayResult = x - y;
   actualResult = x - y;
   Formatting();
-  document.querySelector(".result").textContent = displayResult;
+  getResult.textContent = displayResult;
 };
 
 const multiplication = function (x, y) {
   displayResult = x * y;
   actualResult = x * y;
   Formatting();
-  document.querySelector(".result").textContent = displayResult;
+  getResult.textContent = displayResult;
 };
 
 const division = function (x, y) {
   displayResult = x / y;
   actualResult = x / y;
   Formatting();
-  document.querySelector(".result").textContent = displayResult;
+  getResult.textContent = displayResult;
 };
 
 let Formatting = function () {
@@ -117,39 +129,29 @@ const operate = function (operator, x, y) {
 
 let display = function () {
   displayResult = displayArray.join("");
-  console.log("Display result:" + displayResult);
   let [wholeNumStr, decimalStr] = displayResult.split(".");
   containComma = displayResult.includes(",");
   containPeriod = displayResult.includes(".");
   if (containComma && containPeriod) {
     displayResult = displayArray.join("");
     displayArray = displayArray.slice(0, 9);
-    document.querySelector(".result").textContent = displayResult;
+    getResult.textContent = displayResult;
   } else if (decimalStr) {
     displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
-    // withCommasArray = displayResult.split("");
-    // console.log(withCommasArray);
-    // displayArray = withCommasArray.slice(0, 9);
-    document.querySelector(".result").textContent = displayResult;
+    getResult.textContent = displayResult;
     containComma = displayResult.includes(",");
-    console.log(containComma);
   } else {
     displayResult = Number(displayResult).toLocaleString();
-    // withCommasArray = displayResult.split("");
-    // console.log(withCommasArray);
-    console.log("DisplayResult w/ commas:" + displayResult);
     // commas();
     displayArray = displayArray.slice(0, 8);
-    document.querySelector(".result").textContent = displayResult;
+    getResult.textContent = displayResult;
     containComma = displayResult.includes(",");
-    console.log(containComma);
   }
 };
 
 let actual = function () {
   actualResult = Number(actualArray.join(""));
   actualArray = actualArray.slice(0, 8);
-  console.log("Actual result:" + actualResult);
 };
 
 function createDisplay(number) {
@@ -165,44 +167,140 @@ getZero.addEventListener("click", () => {
   if (displayResult == 0 || displayResult == "undefined") {
     displayResult = 0;
   } else {
-    createDisplay(0);
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableZero = true;
+      return;
+    } else {
+      createDisplay(8);
+    }
   }
 });
 
 getOne.addEventListener("click", () => {
-  createDisplay(1);
+  if (disableOne == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableOne = true;
+      return;
+    } else {
+      createDisplay(1);
+    }
+  }
 });
 
 getTwo.addEventListener("click", () => {
-  createDisplay(2);
+  if (disableTwo == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableTwo = true;
+      return;
+    } else {
+      createDisplay(2);
+    }
+  }
 });
 
 getThree.addEventListener("click", () => {
-  createDisplay(3);
+  if (disableThree == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableThree = true;
+      return;
+    } else {
+      createDisplay(3);
+    }
+  }
 });
 
 getFour.addEventListener("click", () => {
-  createDisplay(4);
+  if (disableFour == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableFour = true;
+      return;
+    } else {
+      createDisplay(4);
+    }
+  }
 });
 
 getFive.addEventListener("click", () => {
-  createDisplay(5);
+  if (disableFive == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableFive = true;
+      return;
+    } else {
+      createDisplay(5);
+    }
+  }
 });
 
 getSix.addEventListener("click", () => {
-  createDisplay(6);
+  if (disableSix == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableSix = true;
+      return;
+    } else {
+      createDisplay(6);
+    }
+  }
 });
 
 getSeven.addEventListener("click", () => {
-  createDisplay(7);
+  if (disableSeven == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableSeven = true;
+      return;
+    } else {
+      createDisplay(7);
+    }
+  }
 });
 
 getEight.addEventListener("click", () => {
-  createDisplay(8);
+  if (disableEight == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableEight = true;
+      return;
+    } else {
+      createDisplay(8);
+    }
+  }
 });
 
 getNine.addEventListener("click", () => {
-  createDisplay(9);
+  if (disableNine == true) {
+    return;
+  } else {
+    disableAtLength = displayResult.toString().split("").length;
+    if (disableAtLength >= 11) {
+      disableNine = true;
+      return;
+    } else {
+      createDisplay(9);
+    }
+  }
 });
 
 // Event listeners for operators
@@ -217,6 +315,7 @@ getDivide.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -227,6 +326,7 @@ getDivide.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   }
 });
 
@@ -240,6 +340,7 @@ getMultiply.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -250,6 +351,7 @@ getMultiply.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   }
 });
 
@@ -286,6 +388,7 @@ getAdd.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -296,6 +399,7 @@ getAdd.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
+    reenable();
   }
 });
 
@@ -310,6 +414,7 @@ getEquals.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     decimalClicked = false;
+    reenable();
   }
 });
 
@@ -318,7 +423,7 @@ getDecimal.addEventListener("click", () => {
     displayArray.push(0, ".");
     displayResult = displayArray.join("");
     displayArray = displayArray.slice(0, 8);
-    document.querySelector(".result").textContent = displayResult;
+    getResult.textContent = displayResult;
 
     actualArray.push(".");
     actualResult = Number(actualArray.join(""));
@@ -330,7 +435,7 @@ getDecimal.addEventListener("click", () => {
     displayArray.push(".");
     displayResult = displayArray.join("");
     displayArray = displayArray.slice(0, 9);
-    document.querySelector(".result").textContent = displayResult;
+    getResult.textContent = displayResult;
 
     actualArray.push(".");
     actualResult = Number(actualArray.join(""));
@@ -345,6 +450,19 @@ getDecimal.addEventListener("click", () => {
 getClear.addEventListener("click", () => {
   clear();
 });
+
+let reenable = function () {
+  disableZero = false;
+  disableOne = false;
+  disableTwo = false;
+  disableThree = false;
+  disableFour = false;
+  disableFive = false;
+  disableSix = false;
+  disableSeven = false;
+  disableEight = false;
+  disableNine = false;
+};
 
 // This function adds and removes commas for the corresponding length
 
