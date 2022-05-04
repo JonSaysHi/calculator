@@ -35,10 +35,10 @@ const getNine = document.querySelector("#nine");
 
 // All perator functions
 const clear = function (x, y) {
-  displayResult = 0;
-  actualResult = 0;
   x = 0;
   y = 0;
+  displayResult = 0;
+  actualResult = 0;
   document.querySelector(".result").textContent = displayResult;
 };
 
@@ -58,6 +58,7 @@ const subtraction = function (x, y) {
 
 const multiplication = function (x, y) {
   displayResult = x * y;
+  console.log(displayResult);
   actualResult = x * y;
   Formatting();
   document.querySelector(".result").textContent = displayResult;
@@ -65,32 +66,28 @@ const multiplication = function (x, y) {
 
 const division = function (x, y) {
   displayResult = x / y;
+  console.log(displayResult);
   actualResult = x / y;
+  console.log(actualResult);
   Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
 
 let Formatting = function () {
-  let round = parseFloat(displayResult);
   let withoutDecimals = Math.trunc(actualResult);
   let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
   let WithoutDecimalsLength = withoutDecimalsArray.length;
-
   displayResult = displayResult.toLocaleString();
+  console.log(displayResult);
   displayResultArray = Array.from(String(displayResult), myFunc);
   if (WithoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
-    return displayResult;
+    actualResult = displayResult;
+    return displayResult && actualResult;
   } else if (WithoutDecimalsLength >= 9) {
     actualResult = Math.round(actualResult);
     displayResult = Math.round(actualResult).toLocaleString();
-    console.log(actualResult);
     return displayResult && actualResult;
-  } else {
-    // commasResult();
-    // displayArray = displayArray.slice(0, 10);
-    displayResult = displayResult.toLocaleString();
-    return displayResult;
   }
 };
 
