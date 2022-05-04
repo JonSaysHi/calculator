@@ -58,7 +58,6 @@ const subtraction = function (x, y) {
 
 const multiplication = function (x, y) {
   displayResult = x * y;
-  console.log(displayResult);
   actualResult = x * y;
   Formatting();
   document.querySelector(".result").textContent = displayResult;
@@ -66,9 +65,7 @@ const multiplication = function (x, y) {
 
 const division = function (x, y) {
   displayResult = x / y;
-  console.log(displayResult);
   actualResult = x / y;
-  console.log(actualResult);
   Formatting();
   document.querySelector(".result").textContent = displayResult;
 };
@@ -77,17 +74,21 @@ let Formatting = function () {
   let withoutDecimals = Math.trunc(actualResult);
   let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
   let WithoutDecimalsLength = withoutDecimalsArray.length;
+
   displayResult = displayResult.toLocaleString();
-  console.log(displayResult);
   displayResultArray = Array.from(String(displayResult), myFunc);
   if (WithoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
-    actualResult = displayResult;
-    return displayResult && actualResult;
+    return displayResult;
   } else if (WithoutDecimalsLength >= 9) {
     actualResult = Math.round(actualResult);
     displayResult = Math.round(actualResult).toLocaleString();
     return displayResult && actualResult;
+  } else {
+    // commasResult();
+    // displayArray = displayArray.slice(0, 10);
+    displayResult = displayResult.toLocaleString();
+    return displayResult;
   }
 };
 
