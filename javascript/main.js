@@ -283,6 +283,11 @@ getEquals.addEventListener("click", () => {
 });
 
 getDecimal.addEventListener("click", () => {
+  if (actualArray.length === 0) {
+    createDisplay(0);
+    createDisplay(".");
+    decimalClicked = true;
+  }
   if (decimalClicked == false) {
     createDisplay(".");
     decimalClicked = true;
