@@ -14,7 +14,6 @@ let decimalClicked = false;
 let withoutDecimals;
 let withCommasArray = [];
 let containComma;
-let containPeriod;
 let disableAtLength;
 let disableZero = false;
 let disableOne = false;
@@ -58,6 +57,7 @@ const clear = function (x, y) {
   actualResult = 0;
   displayArray = [];
   actualArray = [];
+  decimalClicked = false;
   getResult.textContent = displayResult;
 };
 
@@ -94,7 +94,6 @@ let Formatting = function () {
   let withoutDecimalsArray = Array.from(String(withoutDecimals), myFunc);
   let withoutDecimalsLength = withoutDecimalsArray.length;
 
-  displayResult = displayResult.toLocaleString();
   displayResultArray = Array.from(String(displayResult), myFunc);
   if (withoutDecimalsLength >= 10) {
     displayResult = Number.parseFloat(actualResult).toExponential(0);
@@ -131,21 +130,26 @@ let display = function () {
   displayResult = displayArray.join("");
   let [wholeNumStr, decimalStr] = displayResult.split(".");
   containComma = displayResult.includes(",");
-  containPeriod = displayResult.includes(".");
-  if (containComma && containPeriod) {
-    displayResult = displayArray.join("");
-    displayArray = displayArray.slice(0, 9);
+  console.log(containComma);
+  if (decimalStr && containComma == true) {
+    displayResult = wholeNumStr.toLocaleString() + "." + decimalStr;
+    displayArray = displayArray.slice(0, 10);
     getResult.textContent = displayResult;
+    console.log("1");
+    console.log(containComma);
+    return displayResult;
   } else if (decimalStr) {
-    displayResult = Number(wholeNumStr).toLocaleString() + "." + decimalStr;
+    displayResult = wholeNumStr + "." + decimalStr;
     getResult.textContent = displayResult;
-    containComma = displayResult.includes(",");
+    console.log("2");
+    return displayResult;
   } else {
     displayResult = Number(displayResult).toLocaleString();
-    // commas();
-    displayArray = displayArray.slice(0, 8);
+    displayArray = displayArray.slice(0, 10);
     getResult.textContent = displayResult;
-    containComma = displayResult.includes(",");
+    console.log("3");
+    console.log(displayResult);
+    return displayResult;
   }
 };
 
@@ -172,7 +176,7 @@ getZero.addEventListener("click", () => {
       disableZero = true;
       return;
     } else {
-      createDisplay(8);
+      createDisplay(0);
     }
   }
 });
@@ -276,30 +280,20 @@ getSeven.addEventListener("click", () => {
 });
 
 getEight.addEventListener("click", () => {
-  if (disableEight == true) {
+  checkDisable;
+  if (disableNine == true) {
     return;
   } else {
-    disableAtLength = displayResult.toString().split("").length;
-    if (disableAtLength >= 11) {
-      disableEight = true;
-      return;
-    } else {
-      createDisplay(8);
-    }
+    createDisplay(8);
   }
 });
 
 getNine.addEventListener("click", () => {
+  checkDisable();
   if (disableNine == true) {
     return;
   } else {
-    disableAtLength = displayResult.toString().split("").length;
-    if (disableAtLength >= 11) {
-      disableNine = true;
-      return;
-    } else {
-      createDisplay(9);
-    }
+    createDisplay(9);
   }
 });
 
@@ -340,7 +334,6 @@ getMultiply.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
-    reenable();
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
@@ -351,7 +344,6 @@ getMultiply.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
-    reenable();
   }
 });
 
@@ -388,18 +380,16 @@ getAdd.addEventListener("click", () => {
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
-    reenable();
   } else if (typeX == "number" && typeY == "undefined") {
     y = actualResult;
     operate(operator, x, y);
     operator = "add";
-    x = displayResult;
+    x = actualResult;
     y = undefined;
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     console.log(operator);
     decimalClicked = false;
-    reenable();
   }
 });
 
@@ -414,7 +404,6 @@ getEquals.addEventListener("click", () => {
     displayArray.splice(0, displayArray.length);
     actualArray.splice(0, actualArray.length);
     decimalClicked = false;
-    reenable();
   }
 });
 
@@ -451,6 +440,16 @@ getClear.addEventListener("click", () => {
   clear();
 });
 
+let checkDisable = function () {
+  disableAtLength = displayResult.toString().split("").length;
+  if (disableAtLength >= 11 && operator == undefined) {
+    disable();
+  } else if (disableAtLength >= 11 && operator != undefined) {
+    reenable();
+    return;
+  }
+};
+
 let reenable = function () {
   disableZero = false;
   disableOne = false;
@@ -462,6 +461,21 @@ let reenable = function () {
   disableSeven = false;
   disableEight = false;
   disableNine = false;
+  return;
+};
+
+let disable = function () {
+  disableZero = true;
+  disableOne = true;
+  disableTwo = true;
+  disableThree = true;
+  disableFour = true;
+  disableFive = true;
+  disableSix = true;
+  disableSeven = true;
+  disableEight = true;
+  disableNine = true;
+  return;
 };
 
 // This function adds and removes commas for the corresponding length
@@ -519,3 +533,6 @@ let reenable = function () {
 //     displayResultArray.splice(7, 0, ",");
 //   }
 // };
+
+// Change function to string with max string.
+// put the funciton to return inthe next stage
