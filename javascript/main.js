@@ -142,12 +142,18 @@ getEquals.addEventListener("click", () => {});
 
 let concatenateStr = function (value) {
   let containsDecimal = displayStr.includes(".");
-  if (containsDecimal) {
+  if (displayStr == "") {
+    displayStr = displayStr + value;
+    setDisplay.textContent = displayStr;
+    console.log(1);
+  } else if (containsDecimal) {
     displayStr = (displayStr + value).substring(0, 10);
     setDisplay.textContent = displayStr;
+    console.log(2);
   } else {
     displayStr = (displayStr + value).substring(0, 9);
     setDisplay.textContent = parseFloat(displayStr).toLocaleString();
+    console.log(3);
   }
 };
 
