@@ -141,19 +141,24 @@ getEquals.addEventListener("click", () => {});
 //-- Create the functions to concatenate numbers pushed to a string --//
 
 let concatenateStr = function (value) {
+  displayStr = displayStr + value;
   let containsDecimal = displayStr.includes(".");
+  let [wholeNumStr, decimalStr] = displayStr.split(".");
   if (displayStr == "") {
-    displayStr = displayStr + value;
+    // displayStr = displayStr + value;
     setDisplay.textContent = displayStr;
     console.log(1);
   } else if (containsDecimal) {
-    displayStr = (displayStr + value).substring(0, 10);
+    displayStr = displayStr.substring(0, 10);
     setDisplay.textContent = displayStr;
     console.log(2);
   } else {
-    displayStr = (displayStr + value).substring(0, 9);
-    setDisplay.textContent = parseFloat(displayStr).toLocaleString();
+    displayStr = displayStr.substring(0, 9);
+    console.log(displayStr);
+    displayStr = parseFloat(displayStr).toLocaleString();
+    setDisplay.textContent = displayStr;
     console.log(3);
+    displayStr = displayStr.replaceAll(",", "");
   }
 };
 
