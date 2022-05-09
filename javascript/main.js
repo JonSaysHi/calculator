@@ -29,6 +29,20 @@ const setDisplay = document.querySelector(".display");
 
 //-- Create the functions to complete the operator calculations --//
 
+const operate = function (operator, x, y) {
+  if (operator === "add") {
+    addition(x, y);
+  } else if (operator === "subtract") {
+    subtraction(x, y);
+  } else if (operator === "multiply") {
+    multiplication(x, y);
+  } else if (operator === "divide") {
+    division(x, y);
+  } else {
+    return "ERROR";
+  }
+};
+
 const addition = function (x, y) {
   result = x + y;
   setDisplay.textContent = result;
@@ -133,7 +147,7 @@ let concatenateStr = function (value) {
     setDisplay.textContent = displayStr;
   } else {
     displayStr = (displayStr + value).substring(0, 9);
-    setDisplay.textContent = displayStr;
+    setDisplay.textContent = parseFloat(displayStr).toLocaleString();
   }
 };
 
