@@ -153,7 +153,10 @@ getClear.addEventListener("click", () => {
 
 getPlusOrMinus.addEventListener("click", () => {});
 
-getPercent.addEventListener("click", () => {});
+getPercent.addEventListener("click", () => {
+  displayStr = (Number(displayStr.replaceAll(",", "")) / 100).toLocaleString();
+  setDisplay.textContent = displayStr;
+});
 
 //-- Stage 3 --//
 //-- Create the functions to concatenate numbers pushed to a string --//
