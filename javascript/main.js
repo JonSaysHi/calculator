@@ -41,62 +41,8 @@ const numberButtonArr = [
 ];
 const setDisplay = document.querySelector(".display");
 
-//-- Create the functions to complete the operator calculations --//
-
-const calculate = function (x, y) {
-  if (operator == "add") {
-    result = x + y;
-    formatting();
-  } else if (operator == "subtract") {
-    result = x - y;
-    formatting();
-  } else if (operator == "multiply") {
-    result = x * y;
-    formatting();
-  } else if (operator == "divide") {
-    result = x / y;
-    formatting();
-  }
-};
-
-const formatting = function () {
-  console.log(result);
-  let resultStr = result.toString();
-  let resultLength = resultStr.length;
-  let containsExp = result.toString().includes("e+");
-  let [wholeNumStr, decimalStr] = resultStr.split(".");
-  if (decimalStr && decimalStr.length > 1 && containsExp == false) {
-    setDisplay.textContent = (
-      Number(wholeNumStr).toLocaleString() +
-      "." +
-      decimalStr
-    )
-      .toString()
-      .substring(0, 11);
-    console.log(1);
-  } else if (decimalStr && resultLength > 10 && containsExp == false) {
-    setDisplay.textContent = Math.round(result).toLocaleString();
-    console.log(2);
-  } else if (decimalStr && resultLength <= 10) {
-    setDisplay.textContent = (
-      Number(wholeNumStr).toLocaleString() +
-      "." +
-      decimalStr
-    )
-      .toString()
-      .substring(0, 12);
-    console.log(3);
-  } else if (resultLength > 9 || containsExp) {
-    // result = Number(result).toExponential(0);
-    setDisplay.textContent = Number(result).toExponential(0);
-    console.log(4);
-  } else {
-    setDisplay.textContent = result.toLocaleString().substring(0, 12);
-    console.log(5);
-  }
-};
-
-//-- Create the addEventListener functions for each value and decimal button --//
+//-- Stage 2 --//
+//-- Create the addEventListener functions for each value and decimal button that sends its corresponding number to be calculated --//
 
 for (let i = 0; i < numberButtonArr.length; i++) {
   const numberButton = numberButtonArr[i];
@@ -201,6 +147,7 @@ getEquals.addEventListener("click", () => {
   }
 });
 
+//-- Stage 3 --//
 //-- Create the functions to concatenate numbers pushed to a string --//
 
 let concatenateStr = function (value) {
@@ -228,6 +175,58 @@ let concatenateStr = function (value) {
   }
 };
 
-//-- Stage 2 --//
+//-- Stage 4 --//
 
-//-- Create the functions that will assaignthe display value as value x, and allow for second value to be input, and a calculation to take place --//
+//-- Create the functions to complete the operator calculations and format the result appropriately --//
+
+const calculate = function (x, y) {
+  if (operator == "add") {
+    result = x + y;
+    formatting();
+  } else if (operator == "subtract") {
+    result = x - y;
+    formatting();
+  } else if (operator == "multiply") {
+    result = x * y;
+    formatting();
+  } else if (operator == "divide") {
+    result = x / y;
+    formatting();
+  }
+};
+
+const formatting = function () {
+  console.log(result);
+  let resultStr = result.toString();
+  let resultLength = resultStr.length;
+  let containsExp = result.toString().includes("e+");
+  let [wholeNumStr, decimalStr] = resultStr.split(".");
+  if (decimalStr && decimalStr.length > 1 && containsExp == false) {
+    setDisplay.textContent = (
+      Number(wholeNumStr).toLocaleString() +
+      "." +
+      decimalStr
+    )
+      .toString()
+      .substring(0, 11);
+    console.log(1);
+  } else if (decimalStr && resultLength > 10 && containsExp == false) {
+    setDisplay.textContent = Math.round(result).toLocaleString();
+    console.log(2);
+  } else if (decimalStr && resultLength <= 10) {
+    setDisplay.textContent = (
+      Number(wholeNumStr).toLocaleString() +
+      "." +
+      decimalStr
+    )
+      .toString()
+      .substring(0, 12);
+    console.log(3);
+  } else if (resultLength > 9 || containsExp) {
+    setDisplay.textContent = Number(result).toExponential(0);
+    console.log(4);
+  } else {
+    setDisplay.textContent = result.toLocaleString().substring(0, 12);
+    console.log(5);
+  }
+};
