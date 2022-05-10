@@ -142,7 +142,6 @@ getEquals.addEventListener("click", () => {});
 
 let concatenateStr = function (value) {
   displayStr = displayStr + value;
-  // displayStr = displayStr.substring(0, 9);
   let containsDecimal = displayStr.includes(".");
   let [wholeNumStr, decimalStr] = displayStr.split(".");
   if (decimalStr) {
@@ -151,20 +150,18 @@ let concatenateStr = function (value) {
     console.log(displayStr);
     console.log(typeof displayStr);
     setDisplay.textContent = displayStr;
-    console.log(1);
+    return displayStr;
   } else if (containsDecimal) {
-    // displayStr = displayStr.substring(0, 10);
     console.log(displayStr);
     console.log(typeof displayStr);
     setDisplay.textContent = displayStr;
-    console.log(2);
+    return displayStr;
   } else {
     displayStr = displayStr.replaceAll(",", "");
     displayStr = displayStr.substring(0, 9);
     displayStr = parseFloat(displayStr).toLocaleString();
     setDisplay.textContent = displayStr;
-    console.log(displayStr);
-    console.log(3);
+    return displayStr;
   }
 };
 
