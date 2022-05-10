@@ -4,6 +4,7 @@ let operator;
 let x;
 let y;
 let operatorClicked = false;
+let PlusOrMinusClicked = false;
 
 //--- Stage 1 ---//
 
@@ -151,7 +152,21 @@ getClear.addEventListener("click", () => {
   setDisplay.textContent = 0;
 });
 
-getPlusOrMinus.addEventListener("click", () => {});
+getPlusOrMinus.addEventListener("click", () => {
+  if (PlusOrMinusClicked == false && displayStr == "") {
+    displayStr = "-0";
+    setDisplay.textContent = displayStr;
+    PlusOrMinusClicked = true;
+  } else if (PlusOrMinusClicked == false) {
+    displayStr = "-" + displayStr;
+    setDisplay.textContent = displayStr;
+    PlusOrMinusClicked = true;
+  } else {
+    displayStr = displayStr.replace("-", "");
+    setDisplay.textContent = displayStr;
+    PlusOrMinusClicked = false;
+  }
+});
 
 getPercent.addEventListener("click", () => {
   displayStr = (Number(displayStr.replaceAll(",", "")) / 100).toLocaleString();
