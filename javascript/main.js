@@ -62,13 +62,7 @@ getDecimal.addEventListener("click", () => {
   }
 });
 
-//-- Create the addEventListener functions for each operator and additional button --//
-
-getClear.addEventListener("click", () => {});
-
-getPlusOrMinus.addEventListener("click", () => {});
-
-getPercent.addEventListener("click", () => {});
+//-- Create the addEventListener functions for each operator --//
 
 getDivide.addEventListener("click", () => {
   if (x == undefined && operator == undefined) {
@@ -147,6 +141,20 @@ getEquals.addEventListener("click", () => {
   }
 });
 
+//-- Create the addEventListener functions for additional button --//
+
+getClear.addEventListener("click", () => {
+  x = undefined;
+  y = undefined;
+  result = undefined;
+  displayStr = "";
+  setDisplay.textContent = 0;
+});
+
+getPlusOrMinus.addEventListener("click", () => {});
+
+getPercent.addEventListener("click", () => {});
+
 //-- Stage 3 --//
 //-- Create the functions to concatenate numbers pushed to a string --//
 
@@ -196,7 +204,6 @@ const calculate = function (x, y) {
 };
 
 const formatting = function () {
-  console.log(result);
   let resultStr = result.toString();
   let resultLength = resultStr.length;
   let containsExp = result.toString().includes("e+");
@@ -209,10 +216,8 @@ const formatting = function () {
     )
       .toString()
       .substring(0, 11);
-    console.log(1);
   } else if (decimalStr && resultLength > 10 && containsExp == false) {
     setDisplay.textContent = Math.round(result).toLocaleString();
-    console.log(2);
   } else if (decimalStr && resultLength <= 10) {
     setDisplay.textContent = (
       Number(wholeNumStr).toLocaleString() +
@@ -221,12 +226,9 @@ const formatting = function () {
     )
       .toString()
       .substring(0, 12);
-    console.log(3);
   } else if (resultLength > 9 || containsExp) {
     setDisplay.textContent = Number(result).toExponential(0);
-    console.log(4);
   } else {
     setDisplay.textContent = result.toLocaleString().substring(0, 12);
-    console.log(5);
   }
 };
