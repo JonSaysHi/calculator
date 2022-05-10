@@ -3,6 +3,7 @@ let displayStr = "";
 let operator;
 let x;
 let y;
+let operatorClicked = false;
 
 //--- Stage 1 ---//
 
@@ -42,33 +43,19 @@ const setDisplay = document.querySelector(".display");
 
 //-- Create the functions to complete the operator calculations --//
 
-const operate = function (operator, x, y) {
-  if (operator === "add") {
-    addition(x, y);
-  } else if (operator === "subtract") {
-    subtraction(x, y);
-  } else if (operator === "multiply") {
-    multiplication(x, y);
-  } else if (operator === "divide") {
-    division(x, y);
-  } else {
-    return "ERROR";
-  }
-};
-
 const calculate = function (x, y) {
   if (operator == "add") {
     result = x + y;
-    setDisplay.textContent = result;
+    setDisplay.textContent = result.toLocaleString();
   } else if (operator == "subtract") {
     result = x - y;
-    setDisplay.textContent = result;
+    setDisplay.textContent = result.toLocaleString();
   } else if (operator == "multiply") {
     result = x * y;
-    setDisplay.textContent = result;
+    setDisplay.textContent = result.toLocaleString();
   } else if (operator == "divide") {
     result = x / y;
-    setDisplay.textContent = result;
+    setDisplay.textContent = result.toLocaleString();
   }
 };
 
@@ -101,7 +88,7 @@ getPlusOrMinus.addEventListener("click", () => {});
 getPercent.addEventListener("click", () => {});
 
 getDivide.addEventListener("click", () => {
-  if (x == undefined) {
+  if (x == undefined && operator == undefined) {
     setDisplay.textContent = displayStr;
     x = Number(displayStr.replaceAll(",", ""));
     displayStr = "";
