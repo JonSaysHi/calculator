@@ -46,16 +46,53 @@ const setDisplay = document.querySelector(".display");
 const calculate = function (x, y) {
   if (operator == "add") {
     result = x + y;
-    setDisplay.textContent = result.toLocaleString();
+    formatting();
   } else if (operator == "subtract") {
     result = x - y;
-    setDisplay.textContent = result.toLocaleString();
+    formatting();
   } else if (operator == "multiply") {
     result = x * y;
-    setDisplay.textContent = result.toLocaleString();
+    formatting();
   } else if (operator == "divide") {
     result = x / y;
-    setDisplay.textContent = result.toLocaleString();
+    formatting();
+  }
+};
+
+const formatting = function () {
+  console.log(result);
+  let resultStr = result.toString();
+  let resultLength = resultStr.length;
+  let containsExp = result.toString().includes("e+");
+  let [wholeNumStr, decimalStr] = resultStr.split(".");
+  if (decimalStr && decimalStr.length > 1 && containsExp == false) {
+    setDisplay.textContent = (
+      Number(wholeNumStr).toLocaleString() +
+      "." +
+      decimalStr
+    )
+      .toString()
+      .substring(0, 11);
+    console.log(1);
+  } else if (decimalStr && resultLength > 10 && containsExp == false) {
+    setDisplay.textContent = Math.round(result).toLocaleString();
+    console.log(2);
+  } else if (decimalStr && resultLength <= 10) {
+    setDisplay.textContent = (
+      Number(wholeNumStr).toLocaleString() +
+      "." +
+      decimalStr
+    )
+      .toString()
+      .substring(0, 12);
+    console.log(3);
+  } else if (resultLength > 9 || containsExp) {
+    // result = Number(result).toExponential(0);
+    setDisplay.textContent = Number(result).toExponential(0);
+    console.log(4);
+  } else {
+    setDisplay.textContent = result.toLocaleString().substring(0, 12);
+    console.log(5);
   }
 };
 
