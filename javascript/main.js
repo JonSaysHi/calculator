@@ -1,5 +1,6 @@
 let result;
 let displayStr = "";
+let operator;
 let x;
 let y;
 
@@ -55,24 +56,20 @@ const operate = function (operator, x, y) {
   }
 };
 
-const addition = function (x, y) {
-  result = x + y;
-  setDisplay.textContent = result;
-};
-
-const subtraction = function (x, y) {
-  result = x - y;
-  setDisplay.textContent = result;
-};
-
-const multiplication = function (x, y) {
-  result = x * y;
-  setDisplay.textContent = result;
-};
-
-const division = function (x, y) {
-  result = x / y;
-  setDisplay.textContent = result;
+const calculate = function (x, y) {
+  if (operator == "add") {
+    result = x + y;
+    setDisplay.textContent = result;
+  } else if (operator == "subtract") {
+    result = x - y;
+    setDisplay.textContent = result;
+  } else if (operator == "multiply") {
+    result = x * y;
+    setDisplay.textContent = result;
+  } else if (operator == "divide") {
+    result = x / y;
+    setDisplay.textContent = result;
+  }
 };
 
 //-- Create the addEventListener functions for each value and decimal button --//
@@ -81,49 +78,8 @@ for (let i = 0; i < numberButtonArr.length; i++) {
   const numberButton = numberButtonArr[i];
   numberButton.addEventListener("click", () => {
     concatenateStr(i);
-    console.log(i);
   });
 }
-
-// getZero.addEventListener("click", () => {
-//   concatenateStr("0");
-// });
-
-// getOne.addEventListener("click", () => {
-//   concatenateStr("1");
-// });
-
-// getTwo.addEventListener("click", () => {
-//   concatenateStr("2");
-// });
-
-// getThree.addEventListener("click", () => {
-//   concatenateStr("3");
-// });
-
-// getFour.addEventListener("click", () => {
-//   concatenateStr("4");
-// });
-
-// getFive.addEventListener("click", () => {
-//   concatenateStr("5");
-// });
-
-// getSix.addEventListener("click", () => {
-//   concatenateStr("6");
-// });
-
-// getSeven.addEventListener("click", () => {
-//   concatenateStr("7");
-// });
-
-// getEight.addEventListener("click", () => {
-//   concatenateStr("8");
-// });
-
-// getNine.addEventListener("click", () => {
-//   concatenateStr("9");
-// });
 
 getDecimal.addEventListener("click", () => {
   let containsDecimal = displayStr.includes(".");
@@ -144,15 +100,82 @@ getPlusOrMinus.addEventListener("click", () => {});
 
 getPercent.addEventListener("click", () => {});
 
-getDivide.addEventListener("click", () => {});
+getDivide.addEventListener("click", () => {
+  if (x == undefined) {
+    setDisplay.textContent = displayStr;
+    x = Number(displayStr.replaceAll(",", ""));
+    displayStr = "";
+    operator = "divide";
+  } else if (y == undefined) {
+    y = Number(displayStr.replaceAll(",", ""));
+    calculate(x, y);
+    x = result;
+    y = undefined;
+    displayStr = "";
+    operator = "divide";
+  }
+});
 
-getMultiply.addEventListener("click", () => {});
+getMultiply.addEventListener("click", () => {
+  if (x == undefined) {
+    setDisplay.textContent = displayStr;
+    x = Number(displayStr.replaceAll(",", ""));
+    displayStr = "";
+    operator = "multiply";
+  } else if (y == undefined) {
+    y = Number(displayStr.replaceAll(",", ""));
+    calculate(x, y);
+    x = result;
+    y = undefined;
+    displayStr = "";
+    operator = "multiply";
+  }
+});
 
-getSubtract.addEventListener("click", () => {});
+getSubtract.addEventListener("click", () => {
+  if (x == undefined) {
+    setDisplay.textContent = displayStr;
+    x = Number(displayStr.replaceAll(",", ""));
+    displayStr = "";
+    operator = "subtract";
+  } else if (y == undefined) {
+    y = Number(displayStr.replaceAll(",", ""));
+    calculate(x, y);
+    x = result;
+    y = undefined;
+    displayStr = "";
+    operator = "subtract";
+  }
+});
 
-getAdd.addEventListener("click", () => {});
+getAdd.addEventListener("click", () => {
+  if (x == undefined) {
+    setDisplay.textContent = displayStr;
+    x = Number(displayStr.replaceAll(",", ""));
+    displayStr = "";
+    operator = "add";
+  } else if (y == undefined) {
+    y = Number(displayStr.replaceAll(",", ""));
+    calculate(x, y);
+    x = result;
+    y = undefined;
+    displayStr = "";
+    operator = "add";
+  }
+});
 
-getEquals.addEventListener("click", () => {});
+getEquals.addEventListener("click", () => {
+  if (x == undefined) {
+    return;
+  } else if (y == undefined) {
+    y = Number(displayStr.replaceAll(",", ""));
+    calculate(x, y);
+    x = result;
+    y = undefined;
+    displayStr = "";
+    operator = undefined;
+  }
+});
 
 //-- Create the functions to concatenate numbers pushed to a string --//
 
@@ -167,13 +190,9 @@ let concatenateStr = function (value) {
   if (decimalStr) {
     displayStr = wholeNumStr + "." + decimalStr;
     displayStr = displayStr.substring(0, 11);
-    console.log(displayStr);
-    console.log(typeof displayStr);
     setDisplay.textContent = displayStr;
     return displayStr;
   } else if (containsDecimal) {
-    console.log(displayStr);
-    console.log(typeof displayStr);
     setDisplay.textContent = displayStr;
     return displayStr;
   } else {
@@ -185,12 +204,6 @@ let concatenateStr = function (value) {
   }
 };
 
-//-- Set this variable as the display at the end of this addEventListener--//
-
-//-- Continue this function for each number, until either an operator or additional button is pressed, or the maximum number of digits in the string is 9 --//
-
 //-- Stage 2 --//
 
-//-- Once an operator function is pressed, a function will take the display value that is a concatenated string, and store it in value x.
-
-//-- Repeat function being pressed for addEventListeners
+//-- Create the functions that will assaignthe display value as value x, and allow for second value to be input, and a calculation to take place --//
