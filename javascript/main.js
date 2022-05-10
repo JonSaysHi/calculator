@@ -25,6 +25,18 @@ const getSix = document.querySelector("#six");
 const getSeven = document.querySelector("#seven");
 const getEight = document.querySelector("#eight");
 const getNine = document.querySelector("#nine");
+const numberButtonArr = [
+  getZero,
+  getOne,
+  getTwo,
+  getThree,
+  getFour,
+  getFive,
+  getSix,
+  getSeven,
+  getEight,
+  getNine,
+];
 const setDisplay = document.querySelector(".display");
 
 //-- Create the functions to complete the operator calculations --//
@@ -65,49 +77,53 @@ const division = function (x, y) {
 
 //-- Create the addEventListener functions for each value and decimal button --//
 
-getZero.addEventListener("click", () => {
-  if (displayStr == "") {
-    return;
-  } else {
-    concatenateStr("0");
-  }
-});
+for (let i = 0; i < numberButtonArr.length; i++) {
+  const numberButton = numberButtonArr[i];
+  numberButton.addEventListener("click", () => {
+    concatenateStr(i);
+    console.log(i);
+  });
+}
 
-getOne.addEventListener("click", () => {
-  concatenateStr("1");
-});
+// getZero.addEventListener("click", () => {
+//   concatenateStr("0");
+// });
 
-getTwo.addEventListener("click", () => {
-  concatenateStr("2");
-});
+// getOne.addEventListener("click", () => {
+//   concatenateStr("1");
+// });
 
-getThree.addEventListener("click", () => {
-  concatenateStr("3");
-});
+// getTwo.addEventListener("click", () => {
+//   concatenateStr("2");
+// });
 
-getFour.addEventListener("click", () => {
-  concatenateStr("4");
-});
+// getThree.addEventListener("click", () => {
+//   concatenateStr("3");
+// });
 
-getFive.addEventListener("click", () => {
-  concatenateStr("5");
-});
+// getFour.addEventListener("click", () => {
+//   concatenateStr("4");
+// });
 
-getSix.addEventListener("click", () => {
-  concatenateStr("6");
-});
+// getFive.addEventListener("click", () => {
+//   concatenateStr("5");
+// });
 
-getSeven.addEventListener("click", () => {
-  concatenateStr("7");
-});
+// getSix.addEventListener("click", () => {
+//   concatenateStr("6");
+// });
 
-getEight.addEventListener("click", () => {
-  concatenateStr("8");
-});
+// getSeven.addEventListener("click", () => {
+//   concatenateStr("7");
+// });
 
-getNine.addEventListener("click", () => {
-  concatenateStr("9");
-});
+// getEight.addEventListener("click", () => {
+//   concatenateStr("8");
+// });
+
+// getNine.addEventListener("click", () => {
+//   concatenateStr("9");
+// });
 
 getDecimal.addEventListener("click", () => {
   let containsDecimal = displayStr.includes(".");
@@ -144,6 +160,10 @@ let concatenateStr = function (value) {
   displayStr = displayStr + value;
   let containsDecimal = displayStr.includes(".");
   let [wholeNumStr, decimalStr] = displayStr.split(".");
+  if (displayStr == "0") {
+    displayStr = "0";
+    setDisplay.textContent = displayStr;
+  }
   if (decimalStr) {
     displayStr = wholeNumStr + "." + decimalStr;
     displayStr = displayStr.substring(0, 11);
