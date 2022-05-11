@@ -70,6 +70,7 @@ getDivide.addEventListener("click", () => {
     x = Number(displayStr.replaceAll(",", ""));
     displayStr = "";
     operator = "divide";
+    console.log("test");
   } else if (y == undefined) {
     y = Number(displayStr.replaceAll(",", ""));
     calculate(x, y);
@@ -134,9 +135,10 @@ getEquals.addEventListener("click", () => {
   } else if (y == undefined) {
     y = Number(displayStr.replaceAll(",", ""));
     calculate(x, y);
-    x = result;
+    displayStr = result.toString();
+    console.log(result);
     y = undefined;
-    displayStr = "";
+    x = result;
     operator = undefined;
   }
 });
@@ -156,12 +158,12 @@ getPosOrNeg.addEventListener("click", () => {
   if (result !== undefined) {
     let containsNegX = result.toString().includes("-");
     if (containsNegX == false) {
-      result = "-" + result;
+      result = Number("-" + result);
       formatting();
       x = result;
       console.log(1);
     } else if (containsNegX == true) {
-      result = result.toString().replace("-", "");
+      result = Number(result.toString().replace("-", ""));
       formatting();
       x = result;
       console.log(2);
@@ -248,7 +250,6 @@ const calculate = function (x, y) {
     result = x / y;
     formatting();
   }
-  operator = undefined;
 };
 
 const formatting = function () {
