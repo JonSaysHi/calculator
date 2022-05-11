@@ -4,13 +4,12 @@ let operator;
 let x;
 let y;
 let operatorClicked = false;
-let PlusOrMinusClicked = false;
 
 //--- Stage 1 ---//
 
 //-- querySelection all number buttons, operator buttons, additional buttons and the display elemnts --//
 const getClear = document.querySelector("#clear");
-const getPlusOrMinus = document.querySelector("#plusminus");
+const getPosOrNeg = document.querySelector("#posneg");
 const getPercent = document.querySelector("#percent");
 const getDivide = document.querySelector("#divide");
 const getMultiply = document.querySelector("#multiply");
@@ -152,21 +151,51 @@ getClear.addEventListener("click", () => {
   setDisplay.textContent = 0;
 });
 
-getPlusOrMinus.addEventListener("click", () => {
-  if (PlusOrMinusClicked == false && displayStr == "") {
-    displayStr = "-0";
+getPosOrNeg.addEventListener("click", () => {
+  let containsNeg = displayStr.includes("-");
+  if (result !== undefined) {
+    let containsNegX = result.toString().includes("-");
+    if (containsNegX == false) {
+      result = "-" + result;
+      formatting();
+      x = result;
+      console.log(1);
+    } else if (containsNegX == true) {
+      result = result.toString().replace("-", "");
+      formatting();
+      x = result;
+      console.log(2);
+    }
+  } else if (containsNeg == false && displayStr == "") {
+    displayStr = "-0" + displayStr;
     setDisplay.textContent = displayStr;
-    PlusOrMinusClicked = true;
-  } else if (PlusOrMinusClicked == false) {
+    console.log(3);
+  } else if (containsNeg == false) {
     displayStr = "-" + displayStr;
     setDisplay.textContent = displayStr;
-    PlusOrMinusClicked = true;
-  } else {
+    console.log(4);
+  } else if (containsNeg == true) {
     displayStr = displayStr.replace("-", "");
     setDisplay.textContent = displayStr;
-    PlusOrMinusClicked = false;
+    console.log(5);
   }
 });
+
+// if (PlusOrMinusClicked == false && displayStr == "") {
+//   displayStr = "-0";
+//   setDisplay.textContent = displayStr;
+//   PlusOrMinusClicked = true;
+// } else if (PlusOrMinusClicked == false) {
+//   displayStr = "-" + displayStr;
+//   setDisplay.textContent = displayStr;
+//   PlusOrMinusClicked = true;
+// } else {
+//   displayStr = displayStr.replace("-", "");
+//   setDisplay.textContent = displayStr;
+//   PlusOrMinusClicked = false;
+
+//   }
+// });
 
 getPercent.addEventListener("click", () => {
   displayStr = (Number(displayStr.replaceAll(",", "")) / 100).toLocaleString();
@@ -219,6 +248,7 @@ const calculate = function (x, y) {
     result = x / y;
     formatting();
   }
+  operator = undefined;
 };
 
 const formatting = function () {
