@@ -51,17 +51,12 @@ body {
 }
 
 .on-screen-container a {
-  /* border: 1px solid green; */
   border-radius: 120px;
-  background-color: #505050;
-  /* height: 68px;
-  width: 68px; */
   text-decoration: none;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
   font-size: 25px;
 }
 
@@ -78,22 +73,35 @@ body {
   color: white;
 }
 
-#clear,
-#posneg,
-#percent {
+a.num-btn {
+  background-color: #505050;
+  color: white;
+}
+
+a.num-btn:active {
+  background-color: #828282;
+}
+
+a.additional-btn {
   background-color: #d4d4d2;
   color: black;
 }
 
-#divide,
-#multiply,
-#subtract,
-#add,
-#equals {
+a.additional-btn:active {
+  background-color: #efefef;
+  color: black;
+}
+
+a.operator {
   background-color: #ff9500;
+  color: white;
   font-size: 50px;
   padding-bottom: 7px;
   padding-right: 1px;
+}
+
+a.operator:active {
+  background-color: #ffbb5b;
 }
 
 .home-button {
