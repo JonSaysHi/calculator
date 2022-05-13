@@ -146,6 +146,7 @@ getEquals.addEventListener("click", () => {
 //-- Create the addEventListener functions for additional button --//
 
 getClear.addEventListener("click", () => {
+  getClear.textContent = "AC";
   x = undefined;
   y = undefined;
   result = undefined;
@@ -208,6 +209,7 @@ getPercent.addEventListener("click", () => {
 //-- Create the functions to concatenate numbers pushed to a string --//
 
 let concatenateStr = function (value) {
+  getClear.textContent = "C";
   displayStr = displayStr + value;
   let containsDecimal = displayStr.includes(".");
   let [wholeNumStr, decimalStr] = displayStr.split(".");
